@@ -31,8 +31,8 @@ public class StopTimer {
             }
         } else {      //level6,8,11
             for(int i = 0; i < 4; i++){
-                if(HighLevel[Lev][i][0]-5 <= x && x <= HighLevel[Lev][i][0]+5){
-                    if(HighLevel[Lev][i][1]-5 <= z && z <= HighLevel[Lev][i][1]+5) {
+                if(HighLevel[Lev-2][i][0]-5 <= x && x <= HighLevel[Lev-2][i][0]+5){
+                    if(HighLevel[Lev-2][i][1]-5 <= z && z <= HighLevel[Lev-2][i][1]+5) {
                         TimeCounter[i]++;
                     }
                 }

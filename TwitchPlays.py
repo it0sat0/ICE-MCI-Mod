@@ -2,7 +2,6 @@ import socket
 import threading
 import time
 import keypresser
-import mousemoving
 import mouse
 import keyboard
 #from ahk import AHK
@@ -35,100 +34,72 @@ irc.send((	"PASS " + PASS + "\n" +
 
 def gamecontrol():  #あまり気にしなくていい
 	global message
-	#keypresser.key_down('a')
-	mouse_offset_x = 0
-	mouse_offset_y = 0
 	while True:
 		time.sleep(0.001)
 		#mousemoving.offset_move(mouse_offset_x, mouse_offset_y)
-		if "stop" == message.lower():
-			mouse_offset_x = 0
-			mouse_offset_y = 0
+		if "stop" == message.lower(): #Minecraft用のコマンドたち
+			mouse.move(0, 0, absolute=False, duration=0.1)
 			keypresser.key_up('w')
 			keypresser.key_up('a')
 			keypresser.key_up('s')
 			keypresser.key_up('d')
 			message = ""
-		elif "forward" == message.lower():
-			keypresser.key_up('s')
-			keypresser.key_down('w')
+		elif "up" == message.lower():
+			mouse.move(0, -2, absolute=False, duration=0.5)
 			message = ""
-		elif "backward" == message.lower():
-			keypresser.key_up('w')
-			keypresser.key_down('s')
+		elif "down" == message.lower():
+			mouse.move(0, 2, absolute=False, duration=0.5)
 			message = ""
-		elif "leftward" == message.lower():
-			keypresser.key_up('d')
-			keypresser.key_down('a')
+		elif "l" == message.lower():
+			mouse.move(-5, 0, absolute=False, duration=0.5)
 			message = ""
-		elif "rightward" == message.lower():
-			keypresser.key_up('a')
-			keypresser.key_down('d')
+		elif "r" == message.lower():
+			mouse.move(5, 0, absolute=False, duration=0.5)
 			message = ""
-
-		elif "rotate up" == message.lower():
-			mouse_offset_y = -2
-			message = ""
-		elif "rotate down" == message.lower():
-			mouse_offset_y = 2
-			message = ""
-		elif "rotate left" == message.lower():
-			mouse_offset_x = -2
-			message = ""
-		elif "rotate right" == message.lower():
-			mouse_offset_x = 2
-			message = ""
-
 		elif "w" == message.lower():
 			keypresser.key_down('w')
-			time.sleep(2)
-			keypresser.key_up('w')
 			message = ""
 		elif "a" == message.lower():
 			keypresser.key_down('a')
-			time.sleep(2)
-			keypresser.key_up('a')
 			message = ""
 		elif "s" == message.lower():
 			keypresser.key_down('s')
-			time.sleep(2)
-			keypresser.key_up('s')
 			message = ""
 		elif "d" == message.lower():
 			keypresser.key_down('d')
-			time.sleep(2)
+			message = ""
+		elif "sw" == message.lower():
+			keypresser.key_down('w')
+			time.sleep(1)
+			keypresser.key_up('w')
+			message = ""
+		elif "sa" == message.lower():
+			keypresser.key_down('a')
+			time.sleep(1)
+			keypresser.key_up('a')
+			message = ""
+		elif "ss" == message.lower():
+			keypresser.key_down('s')
+			time.sleep(1)
+			keypresser.key_up('s')
+			message = ""
+		elif "sd" == message.lower():
+			keypresser.key_down('d')
+			time.sleep(1)
 			keypresser.key_up('d')
 			message = ""
-		elif "rise" == message.lower():
-			keypresser.key_down('space')
-			time.sleep(2)
-			keypresser.key_up('space')
-			message = ""
-		elif "drop" == message.lower():
-			keypresser.key_down('SHIFT')
-			time.sleep(2)
-			keypresser.key_up('SHIFT')
-			message = ""
-		elif "fly" == message.lower():
-			keypresser.key_down('space')
-			time.sleep(0.06)
-			keypresser.key_up('space')
-			time.sleep(0.06)
-			keypresser.key_down('space')
-			time.sleep(2)
-			keypresser.key_up('space')
-			message = ""
 		elif "mup" == message.lower():
-			mouse.move(0, -50, absolute=False, duration=1)
+			mouse.move(0, -50, absolute=False, duration=0.5)
 			message = ""
+			print ("mup")
 		elif "mdown" == message.lower():
-			mouse.move(0, 50, absolute=False, duration=1)
+			mouse.move(0, 50, absolute=False, duration=0.5)
 			message = ""
-		elif "mleft" == message.lower():
-			mouse.move(-50, 0, absolute=False, duration=1)
+		elif "ml" == message.lower():
+			mouse.move(-50, 0, absolute=False, duration=0.5)
 			message = ""
-		elif "mright" == message.lower():
-			mouse.move(50, 0, absolute=False, duration=1)
+		elif "mr" == message.lower():
+			mouse.move(50, 0, absolute=False, duration=0.5)
 			message = ""
 		elif "click" == message.lower():
 			mouse.click()
@@ -136,22 +107,11 @@ def gamecontrol():  #あまり気にしなくていい
 		elif "open" == message.lower():
 			mouse.right_click()
 			message = ""
+		elif "close" == message.lower():
+			keypresser.key_down('e')
+			keypresser.key_up('e')
+			message = ""
 
-		'''
-		elif "vup" == message.lower():
-			#mousemoving.offset_move(0, -200)
-			message = ""
-		elif "vdown" == message.lower():
-			#mousemoving.offset_move(0, 200)
-			message = ""
-		elif "vright" == message.lower():
-			#mousemoving.offset_move(200, 0)
-			message = ""
-		elif "vleft" == message.lower():
-			#mousemoving.offset_move(-200, 0)
-			message = ""
-		'''
-		
 
 def twitch(): #まるごとコピーして使ったらいい。いつもコメントを取得している
 

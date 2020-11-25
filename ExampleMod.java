@@ -194,18 +194,18 @@ public class ExampleMod {
     @SubscribeEvent
     public void onPlayerRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
         PlayerEntity player = event.getPlayer();
+        String BlockName = event.getUseBlock().toString();
         memory = !memory;
-        if(memory == true) {
+        if(memory == true && BlockName.equals("DEFAULT")) {
             String worldName = player.world.getWorldInfo().getWorldName();  //get World Name
             Calendar cl = Calendar.getInstance();
             sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
             OpenChestNo = OpenChest.OpenChestPosition(worldName, player.getPosX(), player.getPosZ(), LowLevel, HighLevel);
             ArrayList<String> BlockList = new ArrayList<String>();
             BlockList.add(sdf.format(cl.getTime()));
-            BlockList.add(event.getUseBlock().toString());
+            BlockList.add(BlockName);
             BlockList.add(String.valueOf(OpenChestNo));
             BlockLists.add(BlockList);
-            System.out.println(event.getUseBlock().toString());
 
             System.out.println("----------------------------");
             System.out.println("OpenChestNo=" + OpenChestNo);
