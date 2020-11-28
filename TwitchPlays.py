@@ -111,6 +111,11 @@ def gamecontrol():  #あまり気にしなくていい
 			keypresser.key_down('e')
 			keypresser.key_up('e')
 			message = ""
+		elif "p" == message.lower():#SHQ用コマンド
+			mouse.press()
+			time.sleep(0.5)
+			mouse.release()
+			message = ""
 
 
 def twitch(): #まるごとコピーして使ったらいい。いつもコメントを取得している
