@@ -34,7 +34,7 @@ def save_frame_range_sec(video_path, start_sec, stop_sec, step_sec,
             return c
         oimg = cv2.imread("images/" + str(c) + ".jpg")
         h, w, channel = oimg.shape
-        timg = oimg[ h/2+h/6 : h-h/5-10, 0 : w]
+        timg = oimg[ int(h/2+h/6) : int(h-h/5)-10, 0 : w]
         cv2.imwrite(str(base_path) + str(c) + ".jpg", timg)
 
         sec += step_sec
