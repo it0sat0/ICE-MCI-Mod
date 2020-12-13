@@ -37,6 +37,8 @@ irc.send((	"PASS " + PASS + "\n" +
 TimeStamp = []
 command = []
 
+playername = "it0sat0sub"
+
 def gamecontrol():  #あまり気にしなくていい
 	def printout():
 		dt_now = datetime.datetime.now()
@@ -47,144 +49,143 @@ def gamecontrol():  #あまり気にしなくていい
 			w.writerow([TimeStamp[i],command[i]])
 		file.close()
 
-
-
 	global message
 	while True:
 		time.sleep(0.001)
 		#mousemoving.offset_move(mouse_offset_x, mouse_offset_y)
-		if "stop" == message.lower(): #Minecraft用のコマンドたち
-			mouse.move(0, 0, absolute=False, duration=0.1)
-			keypresser.key_up('w')
-			keypresser.key_up('a')
-			keypresser.key_up('s')
-			keypresser.key_up('d')
-			message = ""
-			TimeStamp.append(datetime.datetime.now().isoformat())
-			command.append(message)
-		elif "up" == message.lower():
-			mouse.move(0, -2, absolute=False, duration=0.5)
-			message = ""
-			TimeStamp.append(datetime.datetime.now().isoformat())
-			command.append('up')
-		elif "down" == message.lower():
-			mouse.move(0, 2, absolute=False, duration=0.5)
-			message = ""
-			TimeStamp.append(datetime.datetime.now().isoformat())
-			command.append('down')
-		elif "l" == message.lower():
-			mouse.move(-5, 0, absolute=False, duration=0.5)
-			message = ""
-			TimeStamp.append(datetime.datetime.now().isoformat())
-			command.append('l')
-		elif "r" == message.lower():
-			mouse.move(5, 0, absolute=False, duration=0.5)
-			message = ""
-			TimeStamp.append(datetime.datetime.now().isoformat())
-			command.append('r')
-		elif "w" == message.lower():
-			keypresser.key_down('w')
-			message = ""
-			TimeStamp.append(datetime.datetime.now().isoformat())
-			command.append('w')
-		elif "a" == message.lower():
-			keypresser.key_down('a')
-			message = ""
-			TimeStamp.append(datetime.datetime.now().isoformat())
-			command.append('a')
-		elif "s" == message.lower():
-			keypresser.key_down('s')
-			message = ""
-			TimeStamp.append(datetime.datetime.now().isoformat())
-			command.append('s')
-		elif "d" == message.lower():
-			keypresser.key_down('d')
-			message = ""
-			TimeStamp.append(datetime.datetime.now().isoformat())
-			command.append('d')
-		elif "sw" == message.lower():
-			keypresser.key_down('w')
-			time.sleep(1)
-			keypresser.key_up('w')
-			message = ""
-			TimeStamp.append(datetime.datetime.now().isoformat())
-			command.append('w')
-		elif "sa" == message.lower():
-			keypresser.key_down('a')
-			time.sleep(1)
-			keypresser.key_up('a')
-			message = ""
-			TimeStamp.append(datetime.datetime.now().isoformat())
-			command.append('sa')
-		elif "ss" == message.lower():
-			keypresser.key_down('s')
-			time.sleep(1)
-			keypresser.key_up('s')
-			message = ""
-			TimeStamp.append(datetime.datetime.now().isoformat())
-			command.append('ss')
-		elif "sd" == message.lower():
-			keypresser.key_down('d')
-			time.sleep(1)
-			keypresser.key_up('d')
-			message = ""
-			TimeStamp.append(datetime.datetime.now().isoformat())
-			command.append('sd')
-		elif "mup" == message.lower():
-			mouse.move(0, -50, absolute=False, duration=0.5)
-			message = ""
-			TimeStamp.append(datetime.datetime.now().isoformat())
-			command.append('mup')
-		elif "mdown" == message.lower():
-			mouse.move(0, 50, absolute=False, duration=0.5)
-			message = ""
-			TimeStamp.append(datetime.datetime.now().isoformat())
-			command.append('mdown')
-		elif "ml" == message.lower():
-			mouse.move(-50, 0, absolute=False, duration=0.5)
-			message = ""
-			TimeStamp.append(datetime.datetime.now().isoformat())
-			command.append('ml')
-		elif "mr" == message.lower():
-			mouse.move(50, 0, absolute=False, duration=0.5)
-			message = ""
-			TimeStamp.append(datetime.datetime.now().isoformat())
-			command.append('mr')
-		elif "click" == message.lower():
-			mouse.click()
-			message = ""
-			TimeStamp.append(datetime.datetime.now().isoformat())
-			command.append('click')
-		elif "open" == message.lower():
-			mouse.right_click()
-			message = ""
-			TimeStamp.append(datetime.datetime.now().isoformat())
-			command.append('open')
-		elif "close" == message.lower():
-			keypresser.key_down('e')
-			keypresser.key_up('e')
-			message = ""
-			TimeStamp.append(datetime.datetime.now().isoformat())
-			command.append('close')
-		elif "p" == message.lower():#SHQ用コマンド
-			mouse.press()
-			time.sleep(0.5)
-			mouse.release()
-			message = ""
-			TimeStamp.append(datetime.datetime.now().isoformat())
-			command.append('p')
-		elif "sta" == message.lower():#ゲームスタート
-			mouse.click()
-			message = ""
-			TimeStamp.append(datetime.datetime.now().isoformat())
-			command.append('start')
-		elif "cont" == message.lower():#コンティニュー検出
-			mouse.click()
-			message = ""
-			TimeStamp.append(datetime.datetime.now().isoformat())
-			command.append('continue')
-			printout()
-			print('DONE')
+		if playername == user.lower():
+			if "stop" == message.lower(): #Minecraft用のコマンドたち
+				mouse.move(0, 0, absolute=False, duration=0.1)
+				keypresser.key_up('w')
+				keypresser.key_up('a')
+				keypresser.key_up('s')
+				keypresser.key_up('d')
+				message = ""
+				TimeStamp.append(datetime.datetime.now().isoformat())
+				command.append(message)
+			elif "up" == message.lower():
+				mouse.move(0, -2, absolute=False, duration=0.5)
+				message = ""
+				TimeStamp.append(datetime.datetime.now().isoformat())
+				command.append('up')
+			elif "down" == message.lower():
+				mouse.move(0, 2, absolute=False, duration=0.5)
+				message = ""
+				TimeStamp.append(datetime.datetime.now().isoformat())
+				command.append('down')
+			elif "l" == message.lower():
+				mouse.move(-5, 0, absolute=False, duration=0.5)
+				message = ""
+				TimeStamp.append(datetime.datetime.now().isoformat())
+				command.append('l')
+			elif "r" == message.lower():
+				mouse.move(5, 0, absolute=False, duration=0.5)
+				message = ""
+				TimeStamp.append(datetime.datetime.now().isoformat())
+				command.append('r')
+			elif "w" == message.lower():
+				keypresser.key_down('w')
+				message = ""
+				TimeStamp.append(datetime.datetime.now().isoformat())
+				command.append('w')
+			elif "a" == message.lower():
+				keypresser.key_down('a')
+				message = ""
+				TimeStamp.append(datetime.datetime.now().isoformat())
+				command.append('a')
+			elif "s" == message.lower():
+				keypresser.key_down('s')
+				message = ""
+				TimeStamp.append(datetime.datetime.now().isoformat())
+				command.append('s')
+			elif "d" == message.lower():
+				keypresser.key_down('d')
+				message = ""
+				TimeStamp.append(datetime.datetime.now().isoformat())
+				command.append('d')
+			elif "sw" == message.lower():
+				keypresser.key_down('w')
+				time.sleep(1)
+				keypresser.key_up('w')
+				message = ""
+				TimeStamp.append(datetime.datetime.now().isoformat())
+				command.append('w')
+			elif "sa" == message.lower():
+				keypresser.key_down('a')
+				time.sleep(1)
+				keypresser.key_up('a')
+				message = ""
+				TimeStamp.append(datetime.datetime.now().isoformat())
+				command.append('sa')
+			elif "ss" == message.lower():
+				keypresser.key_down('s')
+				time.sleep(1)
+				keypresser.key_up('s')
+				message = ""
+				TimeStamp.append(datetime.datetime.now().isoformat())
+				command.append('ss')
+			elif "sd" == message.lower():
+				keypresser.key_down('d')
+				time.sleep(1)
+				keypresser.key_up('d')
+				message = ""
+				TimeStamp.append(datetime.datetime.now().isoformat())
+				command.append('sd')
+			elif "mup" == message.lower():
+				mouse.move(0, -50, absolute=False, duration=0.5)
+				message = ""
+				TimeStamp.append(datetime.datetime.now().isoformat())
+				command.append('mup')
+			elif "mdown" == message.lower():
+				mouse.move(0, 50, absolute=False, duration=0.5)
+				message = ""
+				TimeStamp.append(datetime.datetime.now().isoformat())
+				command.append('mdown')
+			elif "ml" == message.lower():
+				mouse.move(-50, 0, absolute=False, duration=0.5)
+				message = ""
+				TimeStamp.append(datetime.datetime.now().isoformat())
+				command.append('ml')
+			elif "mr" == message.lower():
+				mouse.move(50, 0, absolute=False, duration=0.5)
+				message = ""
+				TimeStamp.append(datetime.datetime.now().isoformat())
+				command.append('mr')
+			elif "click" == message.lower():
+				mouse.click()
+				message = ""
+				TimeStamp.append(datetime.datetime.now().isoformat())
+				command.append('click')
+			elif "open" == message.lower():
+				mouse.right_click()
+				message = ""
+				TimeStamp.append(datetime.datetime.now().isoformat())
+				command.append('open')
+			elif "close" == message.lower():
+				keypresser.key_down('e')
+				keypresser.key_up('e')
+				message = ""
+				TimeStamp.append(datetime.datetime.now().isoformat())
+				command.append('close')
+			elif "p" == message.lower():#SHQ用コマンド
+				mouse.press()
+				time.sleep(0.5)
+				mouse.release()
+				message = ""
+				TimeStamp.append(datetime.datetime.now().isoformat())
+				command.append('p')
+			elif "sta" == message.lower():#ゲームスタート
+				mouse.click()
+				message = ""
+				TimeStamp.append(datetime.datetime.now().isoformat())
+				command.append('start')
+			elif "cont" == message.lower():#コンティニュー検出
+				mouse.click()
+				message = ""
+				TimeStamp.append(datetime.datetime.now().isoformat())
+				command.append('continue')
+				printout()
+				print('DONE')
 
 
 def twitch(): #まるごとコピーして使ったらいい。いつもコメントを取得している
