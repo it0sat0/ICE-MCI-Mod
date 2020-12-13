@@ -10,10 +10,7 @@ import java.util.TimerTask;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
-import net.minecraft.client.gui.screen.inventory.InventoryScreen;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.Inventory;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
@@ -90,10 +87,9 @@ public class ExampleMod {
 
     //チェストの位置
     //level1 and 2
-    public static double LowLevel[][][] = {{{-494,700},{-517,652}},{{0,0},{0,0}}};
+    public static double LowLevel[][][] = {{{-132,-631},{-103,-678}},{{-494,719},{-515,643}}};
     //level6,8 and 11
-    public static double HighLevel[][][] = {{{-640,180},{-638,166},{-600,124},{-657,135}},{{0,0},{0,0},{0,0},{0,0}},{{0,0},{0,0},{0,0},{0,0}}};
-
+    public static double HighLevel[][][] = {{{116,58},{115,42},{143,-13},{85,-6}},{{19,129},{38,93},{-17,111},{3,57}},{{352,20},{315,-57},{313,-4},{348,-41}}};
 
     //プレイ開始後の処理
     int count = 0;
