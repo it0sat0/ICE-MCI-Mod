@@ -123,9 +123,6 @@ public class ExampleMod {
         TimerTask task = new TimerTask() {
             public void run() {
                 //System.out.println(count+ "-----------------------");
-                if(count == 3){
-                    player.sendMessage(new StringTextComponent("/time set noon"));
-                }
                 count +=1;
                 sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
                 Calendar cl = Calendar.getInstance();
