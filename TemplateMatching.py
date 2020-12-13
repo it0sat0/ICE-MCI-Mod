@@ -3,19 +3,22 @@ import cv2
 from makeImage import save_frame_range_sec
 from matplotlib import pyplot as plt
 
-image = save_frame_range_sec('movies/level6.mp4', 0, 5, 0.1, 'images', 'img')
+image = save_frame_range_sec('movies/move.mp4', 0, 5, 0.1, 'images', 'img')
 
 maxvalu = []
 t = []
 tc = 0
-temp = 5
+#temp = 5 #temp1
+#temp = 8 #temp2
+temp = 7 #temp3
+#temp = 14 #temp4
 count = 0
 for i_num in range(image):
     val = 0
     for t_num in range(temp):
         img = cv2.imread('images/img' + str(i_num) + '.jpg',0)
         img2 = img.copy()
-        template = cv2.imread('templates1/t' + str(t_num) + '.jpg',0)
+        template = cv2.imread('templates3/t' + str(t_num) + '.jpg',0) #template num
         w, h = template.shape[::-1]
 
         methods = ['cv2.TM_CCOEFF']
@@ -35,13 +38,12 @@ for i_num in range(image):
             bottom_right = (top_left[0] + w, top_left[1] + h)
             cv2.rectangle(img,top_left, bottom_right, 255, 2)
             
-            
+            """
             plt.imshow(img,cmap = 'gray')
             plt.title(str(i_num)+'_'+ str(t_num)), plt.xticks([]), plt.yticks([])
             plt.suptitle(meth)
             plt.show()
-            
-            
+            """
             
     maxvalu.append(val)
     t.append(tc)
