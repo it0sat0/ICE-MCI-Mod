@@ -284,6 +284,21 @@ public class ExampleMod {
         ResultVoids.BlockResult(worldName, BlockLists);
     }
 
+    @SubscribeEvent
+    public void onPlayerLogoutEvent(PlayerEvent.PlayerLoggedOutEvent event){
+        count = 0;
+        dis = 0.0;
+        PosLists.clear(); //Set position
+        TS.clear(); //Set TimeStamp
+        Dis.clear();    //Set Distance
+        PitchYaws.clear();  //Set Pitch and Yaw
+        Chats.clear();
+        Items.clear();
+        BlockLists.clear();
+        ChestNo = 0; //次に開けるべきチェストの番号-1
+        BeforeChestNo = 0; //ひとつ前に開けたチェストの番号
+    }
+
     // You can use EventBusSubscriber to automatically subscribe events on the contained class (this is subscribing to the MOD
     // Event bus for receiving Registry Events)
     @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)

@@ -3,7 +3,7 @@ import cv2
 from makeImage import save_frame_range_sec
 from matplotlib import pyplot as plt
 
-image = save_frame_range_sec('movies/level8.mp4', 0, 6, 0.1, 'images', 'img')
+image = save_frame_range_sec('movies/it0sat0test_Trim.mp4', 0, 200, 0.1, 'images', 'img')
 
 maxvalu = []
 t = []
