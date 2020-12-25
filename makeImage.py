@@ -1,7 +1,7 @@
 import cv2
 import os
 
-def save_frame_range_sec(video_path, start_sec, stop_sec, step_sec,
+def save_frame_range_sec(player, level, video_path, start_sec, stop_sec, step_sec,
                          dir_path, basename, ext='jpg'):
     cap = cv2.VideoCapture(video_path)
     c = 0
@@ -26,13 +26,13 @@ def save_frame_range_sec(video_path, start_sec, stop_sec, step_sec,
         if ret:
             cv2.imwrite(
                 '{}{}.{}'.format(
-                   'images/', c, ext
+                   player + '_images'+ level + '/', c, ext
                 ),
                 frame
             )
         else:
             return c
-        oimg = cv2.imread("images/" + str(c) + ".jpg")
+        oimg = cv2.imread(player + '_images'+ level + '/' + str(c) + ".jpg")
         h, w, channel = oimg.shape
         timg = oimg[ int(h/2+h/6) : int(h-h/5)-10, 0 : w]
         cv2.imwrite(str(base_path) + str(c) + ".jpg", timg)

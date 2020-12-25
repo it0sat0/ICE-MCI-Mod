@@ -3,7 +3,12 @@ import cv2
 from makeImage import save_frame_range_sec
 from matplotlib import pyplot as plt
 
-image = save_frame_range_sec('movies/it0sat0test_Trim.mp4', 0, 200, 0.1, 'images', 'img')
+player = 'Ito'
+level = '11'
+time_leng = 600
+print('movies/'+ player+level +'.mp4')
+print(player +'_images' + level)
+image = save_frame_range_sec(player, level, 'movies/'+ player + level +'.mp4', 0, time_leng, 0.1, player +'_images' + level, 'img')
 
 maxvalu = []
 t = []
@@ -17,7 +22,7 @@ time = 0
 for i_num in range(image):
     val = 0
     for t_num in range(temp):
-        img = cv2.imread('images/img' + str(i_num) + '.jpg',0)
+        img = cv2.imread(player +'_images'+ level +'/img' + str(i_num) + '.jpg',0)
         img2 = img.copy()
         template = cv2.imread('templates2/t' + str(t_num) + '.jpg',0) #template num
         w, h = template.shape[::-1]
