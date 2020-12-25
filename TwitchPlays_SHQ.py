@@ -65,17 +65,12 @@ def gamecontrol():  #あまり気にしなくていい
 				TimeStamp.append(datetime.datetime.now().isoformat())
 				command.append('r')
 			elif "c" == message.lower():
-				mouse.click()
-				message = ""
-				TimeStamp.append(datetime.datetime.now().isoformat())
-				command.append('click')
-			elif "p" == message.lower():#SHQ用コマンド
 				mouse.press()
 				time.sleep(0.5)
 				mouse.release()
 				message = ""
 				TimeStamp.append(datetime.datetime.now().isoformat())
-				command.append('p')
+				command.append('click')
 			elif "st" == message.lower():#ゲームスタート
 				mouse.click()
 				message = ""

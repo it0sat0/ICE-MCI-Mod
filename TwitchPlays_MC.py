@@ -52,10 +52,10 @@ def gamecontrol():  #あまり気にしなくていい
 				keypresser.key_up('s')
 				keypresser.key_up('d')
 				message = ""
-			elif "up" == message.lower():
+			elif "t" == message.lower():
 				mouse.move(0, -2, absolute=False, duration=0.5)
 				message = ""
-			elif "do" == message.lower():
+			elif "b" == message.lower():
 				mouse.move(0, 2, absolute=False, duration=0.5)
 				message = ""
 			elif "l" == message.lower():
@@ -63,6 +63,18 @@ def gamecontrol():  #あまり気にしなくていい
 				message = ""
 			elif "r" == message.lower():
 				mouse.move(5, 0, absolute=False, duration=0.5)
+				message = ""
+			elif "mt" == message.lower():
+				mouse.move(0, -50, absolute=False, duration=0.5)
+				message = ""
+			elif "mb" == message.lower():
+				mouse.move(0, 50, absolute=False, duration=0.5)
+				message = ""
+			elif "ml" == message.lower():
+				mouse.move(-50, 0, absolute=False, duration=0.5)
+				message = ""
+			elif "mr" == message.lower():
+				mouse.move(50, 0, absolute=False, duration=0.5)
 				message = ""
 			elif "w" == message.lower():
 				keypresser.key_down('w')
@@ -95,18 +107,6 @@ def gamecontrol():  #あまり気にしなくていい
 				keypresser.key_down('d')
 				time.sleep(1)
 				keypresser.key_up('d')
-				message = ""
-			elif "mu" == message.lower():
-				mouse.move(0, -50, absolute=False, duration=0.5)
-				message = ""
-			elif "mdo" == message.lower():
-				mouse.move(0, 50, absolute=False, duration=0.5)
-				message = ""
-			elif "ml" == message.lower():
-				mouse.move(-50, 0, absolute=False, duration=0.5)
-				message = ""
-			elif "mr" == message.lower():
-				mouse.move(50, 0, absolute=False, duration=0.5)
 				message = ""
 			elif "c" == message.lower():
 				mouse.click()
