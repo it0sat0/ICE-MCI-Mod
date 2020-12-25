@@ -54,7 +54,7 @@ def gamecontrol():  #あまり気にしなくていい
 		time.sleep(0.001)
 		#mousemoving.offset_move(mouse_offset_x, mouse_offset_y)
 		if playername == user.lower():
-			elif "l" == message.lower():
+			if "l" == message.lower():
 				mouse.move(-50, 0, absolute=False, duration=0.5)
 				message = ""
 				TimeStamp.append(datetime.datetime.now().isoformat())
@@ -107,7 +107,7 @@ def twitch(): #まるごとコピーして使ったらいい。いつもコメ�
 
 	def loadingComplete(line):
 		if("End of /NAMES list" in line):
-			print("TwitchBot has joined " + CHANNEL + "'s Channel!")
+			print("TwitchBot has joined " + CHANNEL + "")
 			sendMessage(irc, "Hello World!")
 			return False
 		else:
