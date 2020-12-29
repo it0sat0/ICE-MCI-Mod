@@ -100,6 +100,10 @@ public class ExampleMod {
     ArrayList<String> TS = new ArrayList<String>(); //Set TimeStamp
     ArrayList<Double> Dis = new ArrayList<Double>();    //Set Distance
     ArrayList<ArrayList<Float>> PitchYaws = new ArrayList<ArrayList<Float>>();  //Set Pitch and Yaw
+
+    int ChestNo = 0; //次に開けるべきチェストの番号-1
+    int OpenChestNo; //開けたチェストの番号
+    int BeforeChestNo = 0; //ひとつ前に開けたチェストの番号
     @SubscribeEvent
     public void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
         PlayerEntity player = event.getPlayer();
@@ -122,12 +126,10 @@ public class ExampleMod {
 
         TimerTask task = new TimerTask() {
             public void run() {
-                //System.out.println(count+ "-----------------------");
                 count +=1;
                 sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
                 Calendar cl = Calendar.getInstance();
                 TS.add(sdf.format(cl.getTime()));
-                //System.out.println(sdf.format(cl.getTime()));
                 ArrayList<Double> PosList = new ArrayList<Double>();
                 PosList.add(player.getPosX());
                 PosList.add(player.getPosY());
@@ -142,6 +144,25 @@ public class ExampleMod {
                 PitchYaw.add(player.getPitchYaw().y); //get Yaw
                 PitchYaws.add(PitchYaw);
                 StopTimer.StopTimerVoid(worldName,player.getPosX(),player.getPosZ(), LowLevel, HighLevel);
+
+                OpenChestNo = OpenChest.OpenChestPosition(worldName, player.getPosX(), player.getPosZ(), LowLevel, HighLevel);
+                if (OpenChestNo == 0 || OpenChestNo == 5) {
+
+                }else if(ChestNo+1 == OpenChestNo){
+                    player.sendMessage(new StringTextComponent("正しい順にチェストをあけています"));
+                    BeforeChestNo = ChestNo;
+                    ChestNo++;
+                } else if (ChestNo == OpenChestNo) {
+                    if (BeforeChestNo == ChestNo) {
+                        player.sendMessage(new StringTextComponent("ここのチェストはすでに開けられてます"));
+                    } else {
+                        BeforeChestNo = ChestNo;
+                    }
+                } else if (ChestNo <= OpenChestNo) {
+                    player.sendMessage(new StringTextComponent("ここのチェストはすでに開けられてます"));
+                } else if (OpenChestNo <= ChestNo) {
+                    player.sendMessage(new StringTextComponent("次に開けるチェストはここではありません！"));
+                }
             }
         };
         Timer looptimer = new Timer();
@@ -178,72 +199,18 @@ public class ExampleMod {
 
     //ブロックをクリックした際に情報を取得
     ArrayList<ArrayList<String>>BlockLists = new ArrayList<ArrayList<String>>();
-    int ChestNo = 0; //次に開けるべきチェストの番号-1
-    int OpenChestNo; //開けたチェストの番号
-    int BeforeChestNo = 0; //ひとつ前に開けたチェストの番号
-    int TimeCount = 0;
-    boolean CC = true;
-    boolean memory = true;
+    //boolean memory = true;
     @SubscribeEvent
     public void onPlayerRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
         PlayerEntity player = event.getPlayer();
         String BlockName = event.getUseBlock().toString();
-        memory = !memory;
-        if(memory == true && BlockName.equals("DEFAULT")) {
-            String worldName = player.world.getWorldInfo().getWorldName();  //get World Name
-            Calendar cl = Calendar.getInstance();
-            sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
-            OpenChestNo = OpenChest.OpenChestPosition(worldName, player.getPosX(), player.getPosZ(), LowLevel, HighLevel);
-            ArrayList<String> BlockList = new ArrayList<String>();
-            BlockList.add(sdf.format(cl.getTime()));
-            BlockList.add(BlockName);
-            BlockList.add(String.valueOf(OpenChestNo));
-            BlockLists.add(BlockList);
-
-            System.out.println("----------------------------");
-            System.out.println("OpenChestNo=" + OpenChestNo);
-            System.out.println("BeforeChesNo=" + BeforeChestNo);
-            System.out.println("ChestNo=" + ChestNo);
-
-            if (OpenChestNo == 0) {
-
-            } else if (OpenChestNo == 5) {
-
-            }else if(ChestNo+1 == OpenChestNo && CC == true){
-                player.sendMessage(new StringTextComponent("正しい順にチェストを開けています"));
-                BeforeChestNo = ChestNo;
-                ChestNo++;
-                CC = false;
-                TimeCount = 0;
-            } else if (ChestNo == OpenChestNo && CC == true) {
-                if (BeforeChestNo == ChestNo) {
-                    player.sendMessage(new StringTextComponent("すでに開けたチェストです"));
-                } else {
-                    BeforeChestNo = ChestNo;
-                }
-                CC = false;
-                TimeCount = 0;
-            } else if (ChestNo <= OpenChestNo && CC == true) {
-                player.sendMessage(new StringTextComponent("すでに開けたチェストです"));
-                CC = false;
-                TimeCount = 0;
-            } else if (OpenChestNo <= ChestNo && CC == true) {
-                player.sendMessage(new StringTextComponent("次に開けるチェストはここではありません！"));
-                CC = false;
-                TimeCount = 0;
-            }
-
-            TimerTask task = new TimerTask() {
-                public void run() {
-                    if (TimeCount == 1) {
-                        CC = true;
-                    }
-                    TimeCount++;
-                }
-            };
-            Timer looptimer = new Timer();
-            looptimer.schedule(task, 0, 1000);
-        }
+        String worldName = player.world.getWorldInfo().getWorldName();  //get World Name
+        Calendar cl = Calendar.getInstance();
+        sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+        ArrayList<String> BlockList = new ArrayList<String>();
+        BlockList.add(sdf.format(cl.getTime()));
+        BlockList.add(BlockName);
+        BlockLists.add(BlockList);
     }
 
     //ファイル書き出し
@@ -297,6 +264,9 @@ public class ExampleMod {
         BlockLists.clear();
         ChestNo = 0; //次に開けるべきチェストの番号-1
         BeforeChestNo = 0; //ひとつ前に開けたチェストの番号
+        //TimeCount = 0;
+        //CC = true;
+        //memory = true;
     }
 
     // You can use EventBusSubscriber to automatically subscribe events on the contained class (this is subscribing to the MOD

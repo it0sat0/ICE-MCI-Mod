@@ -9,11 +9,6 @@ public class OpenChest {
     public static int OpenChestPosition(String level, double x, double z, double LowLevel[][][], double HighLevel[][][]) {
         int Lev = LevNum.length - 1;
 
-        System.out.println("Level=" + level);
-        System.out.println("x=" + x);
-        System.out.println("z=" + z);
-
-
         for (int i = 0; i < LevNum.length; i++) {
             if (level.equals("level" + LevNum[i])) {
                 Lev = i;

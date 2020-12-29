@@ -52,8 +52,6 @@ public class ResultVoids {
                 p.print(Blocks.get(i).get(0));
                 p.print(",");
                 p.print(Blocks.get(i).get(1));
-                p.print(",");
-                p.print(Blocks.get(i).get(2));
                 p.println();    // 改行
             }
             p.close();
