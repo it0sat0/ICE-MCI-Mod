@@ -149,19 +149,19 @@ public class ExampleMod {
                 if (OpenChestNo == 0 || OpenChestNo == 5) {
 
                 }else if(ChestNo+1 == OpenChestNo){
-                    player.sendMessage(new StringTextComponent("正しい順にチェストをあけています"));
+                    player.sendMessage(new StringTextComponent("正しい順にチェストを開けています"));
                     BeforeChestNo = ChestNo;
                     ChestNo++;
                 } else if (ChestNo == OpenChestNo) {
                     if (BeforeChestNo == ChestNo) {
-                        player.sendMessage(new StringTextComponent("ここのチェストはすでに開けられてます"));
+                        player.sendMessage(new StringTextComponent("正しい順にチェストを開けています"));
                     } else {
                         BeforeChestNo = ChestNo;
                     }
                 } else if (ChestNo <= OpenChestNo) {
-                    player.sendMessage(new StringTextComponent("ここのチェストはすでに開けられてます"));
-                } else if (OpenChestNo <= ChestNo) {
                     player.sendMessage(new StringTextComponent("次に開けるチェストはここではありません！"));
+                } else if (OpenChestNo <= ChestNo) {
+                    player.sendMessage(new StringTextComponent("ここのチェストはすでに開けられてます"));
                 }
             }
         };
