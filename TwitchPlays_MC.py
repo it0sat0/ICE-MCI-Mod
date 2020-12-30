@@ -65,16 +65,16 @@ def gamecontrol():  #あまり気にしなくていい
 				mouse.move(5, 0, absolute=False, duration=0.5)
 				message = ""
 			elif "mt" == message.lower():
-				mouse.move(0, -50, absolute=False, duration=0.5)
+				mouse.move(0, -30, absolute=False, duration=0.5)
 				message = ""
 			elif "mb" == message.lower():
-				mouse.move(0, 50, absolute=False, duration=0.5)
+				mouse.move(0, 30, absolute=False, duration=0.5)
 				message = ""
 			elif "ml" == message.lower():
-				mouse.move(-50, 0, absolute=False, duration=0.5)
+				mouse.move(-30, 0, absolute=False, duration=0.5)
 				message = ""
 			elif "mr" == message.lower():
-				mouse.move(50, 0, absolute=False, duration=0.5)
+				mouse.move(30, 0, absolute=False, duration=0.5)
 				message = ""
 			elif "w" == message.lower():
 				keypresser.key_down('w')
@@ -88,22 +88,22 @@ def gamecontrol():  #あまり気にしなくていい
 			elif "d" == message.lower():
 				keypresser.key_down('d')
 				message = ""
-			elif "sw" == message.lower():
+			elif "ow" == message.lower():
 				keypresser.key_down('w')
 				time.sleep(1)
 				keypresser.key_up('w')
 				message = ""
-			elif "sa" == message.lower():
+			elif "oa" == message.lower():
 				keypresser.key_down('a')
 				time.sleep(1)
 				keypresser.key_up('a')
 				message = ""
-			elif "ss" == message.lower():
+			elif "os" == message.lower():
 				keypresser.key_down('s')
 				time.sleep(1)
 				keypresser.key_up('s')
 				message = ""
-			elif "sd" == message.lower():
+			elif "od" == message.lower():
 				keypresser.key_down('d')
 				time.sleep(1)
 				keypresser.key_up('d')

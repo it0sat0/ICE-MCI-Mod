@@ -43,7 +43,7 @@ def gamecontrol():  #あまり気にしなくていい
 	def printout():
 		dt_now = datetime.datetime.now()
 		time = dt_now.strftime('%Y%m%d_%H%M%S')
-		file = open(r'C:\SHQ_mci_files\CommandData_' + time + '.csv', 'w')
+		file = open(r'C:\SHQ_mci_files\CommandData_' + playername + '_' + time + '.csv', 'w')
 		for i in range(len(TimeStamp)):
 			w = csv.writer(file)
 			w.writerow([TimeStamp[i],command[i]])
@@ -55,12 +55,12 @@ def gamecontrol():  #あまり気にしなくていい
 		#mousemoving.offset_move(mouse_offset_x, mouse_offset_y)
 		if playername == user.lower():
 			if "l" == message.lower():
-				mouse.move(-50, 0, absolute=False, duration=0.5)
+				mouse.move(-70, 0, absolute=False, duration=0.5)
 				message = ""
 				TimeStamp.append(datetime.datetime.now().isoformat())
 				command.append('l')
 			elif "r" == message.lower():
-				mouse.move(50, 0, absolute=False, duration=0.5)
+				mouse.move(70, 0, absolute=False, duration=0.5)
 				message = ""
 				TimeStamp.append(datetime.datetime.now().isoformat())
 				command.append('r')
