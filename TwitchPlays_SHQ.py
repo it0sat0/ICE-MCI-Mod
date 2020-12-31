@@ -76,11 +76,11 @@ def gamecontrol():  #あまり気にしなくていい
 				message = ""
 				TimeStamp.append(datetime.datetime.now().isoformat())
 				command.append('start')
-			elif "co" == message.lower():#コンティニュー検出
+			elif "ex" == message.lower():#コンティニュー検出
 				mouse.click()
 				message = ""
 				TimeStamp.append(datetime.datetime.now().isoformat())
-				command.append('continue')
+				command.append('exit')
 				printout()
 				print('DONE')
 
