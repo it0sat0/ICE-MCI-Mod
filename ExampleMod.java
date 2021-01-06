@@ -87,7 +87,7 @@ public class ExampleMod {
 
     //チェストの位置
     //level1 and 2 and 3(test)
-    public static double LowLevel[][][] = {{{-132,-631},{-103,-678}},{{-494,719},{-515,643}},{{-38,264},{-46,246}}};
+    public static double LowLevel[][][] = {{{-132,-631},{-103,-678}},{{-494,719},{-515,643}}};
     //level6,8 and 11
     public static double HighLevel[][][] = {{{116,58},{115,42},{143,-13},{85,-6}},{{19,129},{38,93},{-17,111},{3,57}},{{352,20},{315,-57},{313,-4},{348,-41}}};
 
@@ -104,6 +104,8 @@ public class ExampleMod {
     int ChestNo = 0; //次に開けるべきチェストの番号-1
     int OpenChestNo; //開けたチェストの番号
     int BeforeChestNo = 0; //ひとつ前に開けたチェストの番号
+
+    int TimeCounter[] = {0,0,0,0};
     @SubscribeEvent
     public void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
         PlayerEntity player = event.getPlayer();
@@ -143,9 +145,17 @@ public class ExampleMod {
                 PitchYaw.add(player.getPitchYaw().x); //get Pitch
                 PitchYaw.add(player.getPitchYaw().y); //get Yaw
                 PitchYaws.add(PitchYaw);
-                StopTimer.StopTimerVoid(worldName,player.getPosX(),player.getPosZ(), LowLevel, HighLevel);
+                //StopTimer.StopTimerVoid(worldName,player.getPosX(),player.getPosZ(), LowLevel, HighLevel);
 
                 OpenChestNo = OpenChest.OpenChestPosition(worldName, player.getPosX(), player.getPosZ(), LowLevel, HighLevel);
+
+                if(0 <= OpenChestNo){
+                    if(OpenChestNo < 4) {
+                        TimeCounter[OpenChestNo]++;
+                        System.out.println(OpenChestNo);
+                    }
+                }
+
                 if (OpenChestNo == 0 || OpenChestNo == 5) {
 
                 }else if(ChestNo+1 == OpenChestNo){
@@ -170,6 +180,7 @@ public class ExampleMod {
     }
 
     //チャットに入力された情報を取得
+    /*
     ArrayList<ArrayList<String>>Chats = new ArrayList<ArrayList<String>>();
     @SubscribeEvent
     public void onPlayerMessage(ServerChatEvent chatEvent){
@@ -181,20 +192,21 @@ public class ExampleMod {
         Chats.add(Chat);
         System.out.println(chatEvent.getMessage());
     }
+     */
 
     //アイテムをクリックした際に情報を取得
     ArrayList<ArrayList<String>>Items = new ArrayList<ArrayList<String>>();
     @SubscribeEvent
     public void onPlayerLeftClickItem(TickEvent.PlayerTickEvent event){
         PlayerEntity player = event.player;
-        if(!(player.inventory.getItemStack().getItem().toString().equals("air"))){
-            Calendar cl = Calendar.getInstance();
-            sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
-            ArrayList<String> Item = new ArrayList<String>();
-            Item.add(sdf.format(cl.getTime()));
-            Item.add(player.inventory.getItemStack().getItem().toString());
-            Items.add(Item);
-        }
+            if (!(player.inventory.getItemStack().getItem().toString().equals("air"))) {
+                Calendar cl = Calendar.getInstance();
+                sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+                ArrayList<String> Item = new ArrayList<String>();
+                Item.add(sdf.format(cl.getTime()));
+                Item.add(player.inventory.getItemStack().getItem().toString());
+                Items.add(Item);
+            }
     }
 
     //ブロックをクリックした際に情報を取得
@@ -245,8 +257,9 @@ public class ExampleMod {
         }catch(IOException e){
             System.out.println(e);
         }
-        StopTimer.StopTimerResult(worldName);
-        ResultVoids.ChatResult(worldName, Chats);
+        //StopTimer.StopTimerResult(worldName);
+        //ResultVoids.ChatResult(worldName, Chats);
+        ResultVoids.TimeCountResult(worldName, TimeCounter);
         ResultVoids.ItemResult(worldName, Items);
         ResultVoids.BlockResult(worldName, BlockLists);
     }
@@ -259,11 +272,14 @@ public class ExampleMod {
         TS.clear(); //Set TimeStamp
         Dis.clear();    //Set Distance
         PitchYaws.clear();  //Set Pitch and Yaw
-        Chats.clear();
+        //Chats.clear();
         Items.clear();
         BlockLists.clear();
         ChestNo = 0; //次に開けるべきチェストの番号-1
         BeforeChestNo = 0; //ひとつ前に開けたチェストの番号
+        for(int i=0; i<4; i++){
+            TimeCounter[i] = 0;
+        }
         //TimeCount = 0;
         //CC = true;
         //memory = true;

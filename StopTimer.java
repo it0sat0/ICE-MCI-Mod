@@ -5,7 +5,7 @@ import java.io.*;
 
 public class StopTimer {
     //配列で、各レベルの選択
-    public static String LevNum[] = {"1", "2", "3", "6", "8", "11", "00"};
+    public static String LevNum[] = {"1", "2", "6", "8", "11", "00"};
     //各領域にいた時間の格納
     public static int TimeCounter[] = {0,0,0,0};
     //public static int TimeCounter[][] = {{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0}};
@@ -30,10 +30,13 @@ public class StopTimer {
                 }
             }
         } else {      //level6,8,11
+            System.out.println("1***********");
             for(int i = 0; i < 5; i++){
-                if(HighLevel[Lev-3][i][0]-5 <= x && x <= HighLevel[Lev-3][i][0]+5){
-                    if(HighLevel[Lev-3][i][1]-5 <= z && z <= HighLevel[Lev-3][i][1]+5) {
+                System.out.println("2***************************");
+                if(HighLevel[Lev-2][i][0]-5 <= x && x <= HighLevel[Lev-2][i][0]+5){
+                    if(HighLevel[Lev-2][i][1]-5 <= z && z <= HighLevel[Lev-2][i][1]+5) {
                         TimeCounter[i]++;
+                        System.out.println(TimeCounter[i]);
                     }
                 }
             }

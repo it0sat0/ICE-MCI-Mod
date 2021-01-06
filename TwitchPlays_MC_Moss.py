@@ -1,4 +1,3 @@
-import win32gui
 import socket
 import threading
 import time
@@ -7,15 +6,6 @@ import mouse
 import keyboard
 import datetime
 import csv
-
-hwnd = win32gui.FindWindow(None, r'NoxPlayer')
-win32gui.SetForegroundWindow(hwnd)
-x,y,height,width = win32gui.GetWindowRect(hwnd)
-print('------------------')
-print(x,y,height,width)
-print('------------------')
-#print(dimensions) #(x,y,height,width)
-
 #from ahk import AHK
 #ahk = AHK(executable_path='C:\\Program Files\\AutoHotkey\\AutoHotkey.exe')
 
@@ -49,60 +39,85 @@ command = []
 
 playername = "it0sat0sub"  #ちゃんと変更すること
 
-host = "it0sat0sub"
-
 def gamecontrol():  #あまり気にしなくていい
-	def printout():
-		dt_now = datetime.datetime.now()
-		time = dt_now.strftime('%Y%m%d_%H%M%S')
-		file = open(r'C:\SHQ_mci_files\CommandData_' + playername + '_' + time + '.csv', 'w')
-		for i in range(len(TimeStamp)):
-			w = csv.writer(file)
-			w.writerow([TimeStamp[i],command[i]])
-		file.close()
-
 	global message
 	while True:
 		time.sleep(0.001)
 		#mousemoving.offset_move(mouse_offset_x, mouse_offset_y)
-		if playername == user.lower() or host == user.lower():
-			if "a" == message.lower():
-				mouse.move(int(x+width*(1/8)), int(y+height*(2/3)+5), absolute=True, duration=0.0)
-				mouse.press()
-				time.sleep(0.5)
-				mouse.release()
+		if playername == user.lower():
+			if "st" == message.lower(): #Minecraft用のコマンドたち
+				mouse.move(0, 0, absolute=False, duration=0.1)
+				keypresser.key_up('w')
+				keypresser.key_up('a')
+				keypresser.key_up('s')
+				keypresser.key_up('d')
 				message = ""
-				TimeStamp.append(datetime.datetime.now().isoformat())
-				command.append('left')
+			elif "vw" == message.lower():
+				mouse.move(0, -2, absolute=False, duration=0.5)
+				message = ""
+			elif "vs" == message.lower():
+				mouse.move(0, 2, absolute=False, duration=0.5)
+				message = ""
+			elif "va" == message.lower():
+				mouse.move(-5, 0, absolute=False, duration=0.5)
+				message = ""
+			elif "vd" == message.lower():
+				mouse.move(5, 0, absolute=False, duration=0.5)
+				message = ""
+			elif "mw" == message.lower():
+				mouse.move(0, -30, absolute=False, duration=0.5)
+				message = ""
+			elif "ms" == message.lower():
+				mouse.move(0, 30, absolute=False, duration=0.5)
+				message = ""
+			elif "ma" == message.lower():
+				mouse.move(-30, 0, absolute=False, duration=0.5)
+				message = ""
+			elif "md" == message.lower():
+				mouse.move(30, 0, absolute=False, duration=0.5)
+				message = ""
+			elif "w" == message.lower():
+				keypresser.key_down('w')
+				message = ""
+			elif "a" == message.lower():
+				keypresser.key_down('a')
+				message = ""
+			elif "s" == message.lower():
+				keypresser.key_down('s')
+				message = ""
 			elif "d" == message.lower():
-				mouse.move(int(x+width*(2/5)), int(y+height*(2/3)+5), absolute=True, duration=0.0)
-				mouse.press()
-				time.sleep(0.5)
-				mouse.release()
+				keypresser.key_down('d')
 				message = ""
-				TimeStamp.append(datetime.datetime.now().isoformat())
-				command.append('right')
-			elif "st" == message.lower():#ゲームスタート
-				mouse.click()
+			elif "ow" == message.lower():
+				keypresser.key_down('w')
+				time.sleep(1)
+				keypresser.key_up('w')
 				message = ""
-				TimeStamp.append(datetime.datetime.now().isoformat())
-				command.append('start')
-			elif "ex" == message.lower():#コンティニュー検出
-				mouse.click()
+			elif "oa" == message.lower():
+				keypresser.key_down('a')
+				time.sleep(1)
+				keypresser.key_up('a')
 				message = ""
-				TimeStamp.append(datetime.datetime.now().isoformat())
-				command.append('exit')
-				printout()
-				print('DONE')
-			"""
+			elif "os" == message.lower():
+				keypresser.key_down('s')
+				time.sleep(1)
+				keypresser.key_up('s')
+				message = ""
+			elif "od" == message.lower():
+				keypresser.key_down('d')
+				time.sleep(1)
+				keypresser.key_up('d')
+				message = ""
 			elif "c" == message.lower():
-				mouse.press()
-				time.sleep(0.5)
-				mouse.release()
+				mouse.click()
 				message = ""
-				TimeStamp.append(datetime.datetime.now().isoformat())
-				command.append('click')
-			"""
+			elif "op" == message.lower():
+				mouse.right_click()
+				message = ""
+			elif "cl" == message.lower():
+				keypresser.key_down('e')
+				keypresser.key_up('e')
+				message = ""
 
 
 def twitch(): #まるごとコピーして使ったらいい。いつもコメントを取得している
@@ -122,7 +137,7 @@ def twitch(): #まるごとコピーして使ったらいい。いつもコメ�
 
 	def loadingComplete(line):
 		if("End of /NAMES list" in line):
-			print("TwitchBot has joined " + CHANNEL + "")
+			print("TwitchBot has joined " + CHANNEL + "'s Channel!")
 			sendMessage(irc, "Hello World!")
 			return False
 		else:

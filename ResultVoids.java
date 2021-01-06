@@ -23,6 +23,24 @@ public class ResultVoids {
         }
     }
 
+    public static void TimeCountResult(String worldName, int TimeCounter[]){
+        try{
+            File file = new File("C:\\minecraft_mci_files\\"+ worldName + "_StopTimeResult.csv");
+            FileWriter filewriter = new FileWriter(file);
+            PrintWriter p = new PrintWriter(new BufferedWriter(filewriter));
+            p.print(worldName);
+            for(int j=0; j<4; j++){
+                p.print(",");
+                p.print(TimeCounter[j]);
+            }
+            p.println();    // 改行
+            p.close();
+            filewriter.close();
+        }catch(IOException e){
+            System.out.println(e);
+        }
+    }
+
     public static void ItemResult(String worldName, ArrayList<ArrayList<String>> Items) {
         try {
             File file = new File("C:\\minecraft_mci_files\\" + worldName + "_ItemsResult.csv");

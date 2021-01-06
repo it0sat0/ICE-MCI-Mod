@@ -3,7 +3,7 @@ import cv2
 from makeImage import save_frame_range_sec
 from matplotlib import pyplot as plt
 
-player = 'Ito'
+player = 'inoue'
 level = '11'
 time_leng = 600
 print('movies/'+ player+level +'.mp4')
