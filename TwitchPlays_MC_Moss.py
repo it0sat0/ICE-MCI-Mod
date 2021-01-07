@@ -37,7 +37,7 @@ irc.send((	"PASS " + PASS + "\n" +
 TimeStamp = []
 command = []
 
-playername = "it0sat0sub"  #ちゃんと変更すること
+playername = "it0sat0"  #ちゃんと変更すること
 
 def gamecontrol():  #あまり気にしなくていい
 	global message

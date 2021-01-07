@@ -8,10 +8,12 @@ import java.util.stream.Collectors;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javafx.scene.input.KeyCode;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.ServerChatEvent;
@@ -101,10 +103,6 @@ public class ExampleMod {
     ArrayList<Double> Dis = new ArrayList<Double>();    //Set Distance
     ArrayList<ArrayList<Float>> PitchYaws = new ArrayList<ArrayList<Float>>();  //Set Pitch and Yaw
 
-    int ChestNo = 0; //次に開けるべきチェストの番号-1
-    int OpenChestNo; //開けたチェストの番号
-    int BeforeChestNo = 0; //ひとつ前に開けたチェストの番号
-
     int TimeCounter[] = {0,0,0,0};
     @SubscribeEvent
     public void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
@@ -145,35 +143,11 @@ public class ExampleMod {
                 PitchYaw.add(player.getPitchYaw().x); //get Pitch
                 PitchYaw.add(player.getPitchYaw().y); //get Yaw
                 PitchYaws.add(PitchYaw);
+
                 //StopTimer.StopTimerVoid(worldName,player.getPosX(),player.getPosZ(), LowLevel, HighLevel);
 
-                OpenChestNo = OpenChest.OpenChestPosition(worldName, player.getPosX(), player.getPosZ(), LowLevel, HighLevel);
-
-                if(0 <= OpenChestNo){
-                    if(OpenChestNo < 4) {
-                        TimeCounter[OpenChestNo]++;
-                        System.out.println(OpenChestNo);
-                    }
-                }
-
-                if (OpenChestNo == 0 || OpenChestNo == 5) {
-
-                }else if(ChestNo+1 == OpenChestNo){
-                    player.sendMessage(new StringTextComponent("正しい順にチェストを開けています"));
-                    BeforeChestNo = ChestNo;
-                    ChestNo++;
-                } else if (ChestNo == OpenChestNo) {
-                    if (BeforeChestNo == ChestNo) {
-                        player.sendMessage(new StringTextComponent("正しい順にチェストを開けています"));
-                    } else {
-                        BeforeChestNo = ChestNo;
-                    }
-                } else if (ChestNo <= OpenChestNo) {
-                    player.sendMessage(new StringTextComponent("次に開けるチェストはここではありません！"));
-                } else if (OpenChestNo <= ChestNo) {
-                    player.sendMessage(new StringTextComponent("ここのチェストはすでに開けられてます"));
-                }
             }
+
         };
         Timer looptimer = new Timer();
         looptimer.schedule(task, 0, 1000);
@@ -193,6 +167,53 @@ public class ExampleMod {
         System.out.println(chatEvent.getMessage());
     }
      */
+
+    //キーボード入力判定
+    int ChestNo = 0; //次に開けるべきチェストの番号-1
+    int OpenChestNo; //開けたチェストの番号
+    int BeforeChestNo = 0; //ひとつ前に開けたチェストの番号
+    boolean Chat = false;
+    @SubscribeEvent
+    public void onKeyPress(InputEvent.KeyInputEvent event){
+        if(event.getKey()==69){
+            Chat = true;
+        }
+    }
+
+    //チェスト順のコメント出力
+    boolean LC = true;
+    @SubscribeEvent
+    public void onSendChat(PlayerEvent event){
+        if(Chat == true) {
+            PlayerEntity player = event.getPlayer();
+            String worldName = player.world.getWorldInfo().getWorldName();  //get World Name
+            System.out.println("WorldName:" + worldName);
+            OpenChestNo = OpenChest.OpenChestPosition(worldName, player.getPosX(), player.getPosZ(), LowLevel, HighLevel, LC);
+
+            if (OpenChestNo == 0 || OpenChestNo == 5) {
+
+            } else if (ChestNo + 1 == OpenChestNo) {
+                player.sendMessage(new StringTextComponent("正しい順にチェストを開けています"));
+                BeforeChestNo = ChestNo;
+                ChestNo++;
+                LC = false;
+            } else if (ChestNo == OpenChestNo) {
+                if (BeforeChestNo == ChestNo) {
+                    player.sendMessage(new StringTextComponent("正しい順にチェストを開けています"));
+                } else {
+                    BeforeChestNo = ChestNo;
+                }
+                LC = false;
+            } else if (ChestNo <= OpenChestNo) {
+                player.sendMessage(new StringTextComponent("次に開けるチェストはここではありません！"));
+                LC = false;
+            } else if (OpenChestNo <= ChestNo) {
+                player.sendMessage(new StringTextComponent("ここのチェストはすでに開けられてます"));
+                LC = false;
+            }
+            Chat = false;
+        }
+    }
 
     //アイテムをクリックした際に情報を取得
     ArrayList<ArrayList<String>>Items = new ArrayList<ArrayList<String>>();
@@ -230,6 +251,7 @@ public class ExampleMod {
     public void onPlayerCrafted(PlayerEvent.ItemCraftedEvent event) {
         PlayerEntity player = event.getPlayer();
         String worldName = player.world.getWorldInfo().getWorldName();
+
         try{
             if(worldName.equals("level1")) {
                 File newdir = new File("C:\\minecraft_mci_files");
@@ -259,7 +281,7 @@ public class ExampleMod {
         }
         //StopTimer.StopTimerResult(worldName);
         //ResultVoids.ChatResult(worldName, Chats);
-        ResultVoids.TimeCountResult(worldName, TimeCounter);
+        //ResultVoids.TimeCountResult(worldName, TimeCounter);
         ResultVoids.ItemResult(worldName, Items);
         ResultVoids.BlockResult(worldName, BlockLists);
     }
@@ -283,6 +305,7 @@ public class ExampleMod {
         //TimeCount = 0;
         //CC = true;
         //memory = true;
+        LC = true;
     }
 
     // You can use EventBusSubscriber to automatically subscribe events on the contained class (this is subscribing to the MOD
