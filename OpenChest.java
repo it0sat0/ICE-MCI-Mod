@@ -28,7 +28,6 @@ public class OpenChest {
                 }
             }
             System.out.println("Level:" + LevNum[Lev]);
-            System.out.println("NONONONO");
         }
 
         /*
@@ -51,7 +50,7 @@ public class OpenChest {
                 }
             }
         } else {      //level6,8,11
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < 4; i++) {
                 if (HighLevel[Lev-2][i][0] - 5 <= x && x <= HighLevel[Lev-2][i][0] + 5) {
                     if (HighLevel[Lev-2][i][1] - 5 <= z && z <= HighLevel[Lev-2][i][1] + 5) {
                         return i;

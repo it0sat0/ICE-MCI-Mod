@@ -172,11 +172,11 @@ public class ExampleMod {
     int ChestNo = 0; //次に開けるべきチェストの番号-1
     int OpenChestNo; //開けたチェストの番号
     int BeforeChestNo = 0; //ひとつ前に開けたチェストの番号
-    boolean Chat = false;
+    boolean Chast = false;
     @SubscribeEvent
     public void onKeyPress(InputEvent.KeyInputEvent event){
         if(event.getKey()==69){
-            Chat = true;
+            Chast = true;
         }
     }
 
@@ -184,7 +184,7 @@ public class ExampleMod {
     boolean LC = true;
     @SubscribeEvent
     public void onSendChat(PlayerEvent event){
-        if(Chat == true) {
+        if(Chast == true) {
             PlayerEntity player = event.getPlayer();
             String worldName = player.world.getWorldInfo().getWorldName();  //get World Name
             System.out.println("WorldName:" + worldName);
@@ -208,12 +208,13 @@ public class ExampleMod {
                 player.sendMessage(new StringTextComponent("次に開けるチェストはここではありません！"));
                 LC = false;
             } else if (OpenChestNo <= ChestNo) {
-                player.sendMessage(new StringTextComponent("ここのチェストはすでに開けられてます"));
+                player.sendMessage(new StringTextComponent("このチェストはすでに開けられてます"));
                 LC = false;
             }
-            Chat = false;
+            Chast = false;
         }
     }
+
 
     //アイテムをクリックした際に情報を取得
     ArrayList<ArrayList<String>>Items = new ArrayList<ArrayList<String>>();
@@ -299,13 +300,13 @@ public class ExampleMod {
         BlockLists.clear();
         ChestNo = 0; //次に開けるべきチェストの番号-1
         BeforeChestNo = 0; //ひとつ前に開けたチェストの番号
-        for(int i=0; i<4; i++){
-            TimeCounter[i] = 0;
-        }
+        LC = true;
+        Chast = false;
+
         //TimeCount = 0;
         //CC = true;
         //memory = true;
-        LC = true;
+        //LC = true;
     }
 
     // You can use EventBusSubscriber to automatically subscribe events on the contained class (this is subscribing to the MOD
