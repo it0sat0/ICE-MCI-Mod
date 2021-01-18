@@ -52,28 +52,28 @@ def gamecontrol():  #あまり気にしなくていい
 				keypresser.key_up('s')
 				keypresser.key_up('d')
 				message = ""
-			elif "t" == message.lower():
+			elif "vw" == message.lower():
 				mouse.move(0, -2, absolute=False, duration=0.5)
 				message = ""
-			elif "b" == message.lower():
+			elif "vs" == message.lower():
 				mouse.move(0, 2, absolute=False, duration=0.5)
 				message = ""
-			elif "l" == message.lower():
+			elif "va" == message.lower():
 				mouse.move(-5, 0, absolute=False, duration=0.5)
 				message = ""
-			elif "r" == message.lower():
+			elif "vd" == message.lower():
 				mouse.move(5, 0, absolute=False, duration=0.5)
 				message = ""
-			elif "mt" == message.lower():
+			elif "mw" == message.lower():
 				mouse.move(0, -30, absolute=False, duration=0.5)
 				message = ""
-			elif "mb" == message.lower():
+			elif "ms" == message.lower():
 				mouse.move(0, 30, absolute=False, duration=0.5)
 				message = ""
-			elif "ml" == message.lower():
+			elif "ma" == message.lower():
 				mouse.move(-30, 0, absolute=False, duration=0.5)
 				message = ""
-			elif "mr" == message.lower():
+			elif "md" == message.lower():
 				mouse.move(30, 0, absolute=False, duration=0.5)
 				message = ""
 			elif "w" == message.lower():

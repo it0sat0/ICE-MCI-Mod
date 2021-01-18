@@ -3,7 +3,7 @@ import cv2
 from makeImage import save_frame_range_sec
 from matplotlib import pyplot as plt
 
-player = 'inoue'
+player = 'izumi'
 level = '11'
 time_leng = 600
 print('movies/'+ player+level +'.mp4')
@@ -15,7 +15,7 @@ t = []
 tc = 0
 #temp = 33 #no 0~20, yse 21~
 #temp = 11 #temp1
-temp = 21 #temp2
+temp = 39 #temp2
 count = 0
 time = 0
 
@@ -45,17 +45,12 @@ for i_num in range(image):
             bottom_right = (top_left[0] + w, top_left[1] + h)
             cv2.rectangle(img,top_left, bottom_right, 255, 2)
             
-            """
-            plt.imshow(img,cmap = 'gray')
-            plt.title(str(i_num)+'_'+ str(t_num)), plt.xticks([]), plt.yticks([])
-            plt.suptitle(meth)
-            plt.show()
-            """
     #print(count)
     if count < 14:      #temp->21 temp1->7 temp2->14
         maxvalu.append(0)
     else:
         maxvalu.append(1)
+        print(i_num)
         time += 1
 
     t.append(tc)

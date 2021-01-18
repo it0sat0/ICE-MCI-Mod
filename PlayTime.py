@@ -1,8 +1,8 @@
 import csv
 import pprint
 
-player = "ito_test"
-level = "1"
+player = "izumi"
+level = "11"
 
 #level1 and 2 and 3(test)
 LowLevel = [[[-132,-631],[-103,-678]],[[-494,719],[-515,643]]]
