@@ -1,7 +1,7 @@
 import csv
 import pprint
 
-player = "izumi"
+player = "playername"
 level = "11"
 
 #level1 and 2 and 3(test)
