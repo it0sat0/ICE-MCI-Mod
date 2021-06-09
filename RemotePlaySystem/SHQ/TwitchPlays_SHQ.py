@@ -23,16 +23,16 @@ SERVER = "irc.twitch.tv" #固定
 PORT = 6667 #固定
 
 #Your OAUTH Code Here https://twitchapps.com/tmi/
-PASS = "oauth:xex3y8k1uf78kuoxyzoi2fuc0ya0aj" #自分のTwitchアカから取れるので、変える(変更DONE)
+PASS = "" #自分のTwitchアカから取れるので、変える(変更DONE)
 
 #What you'd like to name your bot
 BOT = "ICE_MCI_testBot"
 
 #The channel you want to monitor
-CHANNEL = "it0sat0" #自分のチャンネルの名前
+CHANNEL = "" #自分のチャンネルの名前
 
 #Your account
-OWNER = "it0sat0" #自分のチャンネルの名前
+OWNER = "" #自分のチャンネルの名前
 
 message = ""
 user = ""
@@ -47,9 +47,9 @@ irc.send((	"PASS " + PASS + "\n" +
 TimeStamp = []
 command = []
 
-playername = "it0sat0sub"  #ちゃんと変更すること
+playername = ""  #ちゃんと変更すること
 
-host = "it0sat0sub"
+host = ""
 
 def gamecontrol():  #あまり気にしなくていい
 	def printout():
