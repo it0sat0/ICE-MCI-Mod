@@ -3,8 +3,8 @@ import cv2
 from makeImage import save_frame_range_sec
 from matplotlib import pyplot as plt
 
-player = 'izumi'
-level = '11'
+player = 'playername'
+level = 'level num'
 time_leng = 600
 print('movies/'+ player+level +'.mp4')
 print(player +'_images' + level)
