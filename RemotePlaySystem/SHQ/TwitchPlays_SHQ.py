@@ -29,10 +29,10 @@ PASS = "" #自分のTwitchアカから取れるので、変える(変更DONE)
 BOT = "ICE_MCI_testBot"
 
 #The channel you want to monitor
-CHANNEL = "" #自分のチャンネルの名前
+CHANNEL = "it0sat0" #自分のチャンネルの名前
 
 #Your account
-OWNER = "" #自分のチャンネルの名前
+OWNER = "it0sat0" #自分のチャンネルの名前
 
 message = ""
 user = ""

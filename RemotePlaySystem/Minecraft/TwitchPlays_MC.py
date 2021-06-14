@@ -13,7 +13,7 @@ SERVER = "irc.twitch.tv" #固定
 PORT = 6667 #固定
 
 #Your OAUTH Code Here https://twitchapps.com/tmi/
-PASS = "oauth:xex3y8k1uf78kuoxyzoi2fuc0ya0aj" #自分のTwitchアカから取れるので、変える(変更DONE)
+PASS = "" #自分のTwitchアカから取れるので、変える(変更DONE)
 #こちらに変更かもoauth:oic0qa827w2fu1kbpyi2ihxjnketby
 #What you'd like to name your bot
 BOT = "ICE_MCI_testBot"
@@ -37,7 +37,7 @@ irc.send((	"PASS " + PASS + "\n" +
 TimeStamp = []
 command = []
 
-playername = "it0sat0sub"  #ちゃんと変更すること
+playername = ""  #ちゃんと変更すること
 
 def gamecontrol():  #あまり気にしなくていい
 	global message
