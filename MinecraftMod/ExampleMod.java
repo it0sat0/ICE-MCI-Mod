@@ -1,5 +1,7 @@
 package com.ice.mci_mod;
 
+import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -7,19 +9,23 @@ import java.util.Calendar;
 import java.util.stream.Collectors;
 import java.util.Timer;
 import java.util.TimerTask;
+//import java.awt.*;
+//import java.awt.event.InputEvent;
 
-import javafx.scene.input.KeyCode;
+import com.mojang.brigadier.arguments.StringArgumentType;
+import com.mojang.brigadier.tree.CommandNode;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.command.Commands;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.common.Mod;
@@ -31,6 +37,11 @@ import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import static com.mojang.brigadier.arguments.StringArgumentType.getString;
+import static com.mojang.brigadier.arguments.StringArgumentType.string;
+import static net.minecraft.command.Commands.argument;
+import static net.minecraft.command.Commands.literal;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod("mci_mod")
@@ -84,11 +95,29 @@ public class ExampleMod {
     public void onServerStarting(FMLServerStartingEvent event) {
         // do something when the server starts
         LOGGER.info("HELLO from server starting");
+
+        event.getCommandDispatcher().register(
+                literal("join").then(argument("channel", string()).executes(c -> {
+                    String channel = getString(c, "channel");
+                    TwitchPlays.join(channel);
+                    event.getServer().sendMessage(new StringTextComponent("Joined channel " + channel));
+                    return 1;
+                }))
+        );
     }
 
+    /*
+    public static void click(int x, int y) throws AWTException {
+        Robot bot = new Robot();
+        bot.mouseMove(x, y);
+        bot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        bot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+    }
+
+     */
 
     //チェストの位置
-    //level1 and 2 and 3(test)
+    //level1 and 2
     public static double LowLevel[][][] = {{{-132,-631},{-103,-678}},{{-494,719},{-515,643}}};
     //level6,8 and 11
     public static double HighLevel[][][] = {{{116,58},{115,42},{143,-13},{85,-6}},{{19,129},{38,93},{-17,111},{3,57}},{{352,20},{315,-57},{313,-4},{348,-41}}};
@@ -106,6 +135,8 @@ public class ExampleMod {
     int TimeCounter[] = {0,0,0,0};
     @SubscribeEvent
     public void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
+        System.out.println("OK1");
+        //event.getPlayer().sendMessage(new StringTextComponent("ゲーム開始"));
         PlayerEntity player = event.getPlayer();
         String worldName = player.world.getWorldInfo().getWorldName();  //get World Name
 
@@ -143,39 +174,24 @@ public class ExampleMod {
                 PitchYaw.add(player.getPitchYaw().x); //get Pitch
                 PitchYaw.add(player.getPitchYaw().y); //get Yaw
                 PitchYaws.add(PitchYaw);
-
-                //StopTimer.StopTimerVoid(worldName,player.getPosX(),player.getPosZ(), LowLevel, HighLevel);
-
             }
 
         };
         Timer looptimer = new Timer();
         looptimer.schedule(task, 0, 1000);
-    }
 
-    //チャットに入力された情報を取得
-    /*
-    ArrayList<ArrayList<String>>Chats = new ArrayList<ArrayList<String>>();
-    @SubscribeEvent
-    public void onPlayerMessage(ServerChatEvent chatEvent){
-        Calendar cl = Calendar.getInstance();
-        sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
-        ArrayList<String> Chat = new ArrayList<String>();
-        Chat.add(sdf.format(cl.getTime()));
-        Chat.add(chatEvent.getMessage());
-        Chats.add(Chat);
-        System.out.println(chatEvent.getMessage());
+        TwitchPlays.setTargetPlayer(event.getPlayer());
     }
-     */
 
     //キーボード入力判定
     int ChestNo = 0; //次に開けるべきチェストの番号-1
     int OpenChestNo; //開けたチェストの番号
     int BeforeChestNo = 0; //ひとつ前に開けたチェストの番号
     boolean Chast = false;
+    //チェスト開いた時判定が保存されなくなってるで
     @SubscribeEvent
     public void onKeyPress(InputEvent.KeyInputEvent event){
-        if(event.getKey()==69){
+        if(event.getKey()==69){ //Eかな？
             Chast = true;
         }
     }
@@ -280,9 +296,6 @@ public class ExampleMod {
         }catch(IOException e){
             System.out.println(e);
         }
-        //StopTimer.StopTimerResult(worldName);
-        //ResultVoids.ChatResult(worldName, Chats);
-        //ResultVoids.TimeCountResult(worldName, TimeCounter);
         ResultVoids.ItemResult(worldName, Items);
         ResultVoids.BlockResult(worldName, BlockLists);
     }
@@ -302,11 +315,6 @@ public class ExampleMod {
         BeforeChestNo = 0; //ひとつ前に開けたチェストの番号
         LC = true;
         Chast = false;
-
-        //TimeCount = 0;
-        //CC = true;
-        //memory = true;
-        //LC = true;
     }
 
     // You can use EventBusSubscriber to automatically subscribe events on the contained class (this is subscribing to the MOD

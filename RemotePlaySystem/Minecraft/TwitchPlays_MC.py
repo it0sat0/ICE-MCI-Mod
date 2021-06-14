@@ -13,16 +13,16 @@ SERVER = "irc.twitch.tv" #固定
 PORT = 6667 #固定
 
 #Your OAUTH Code Here https://twitchapps.com/tmi/
-PASS = "" #自分のTwitchアカから取れるので、変える(変更DONE)
-
+PASS = "oauth:xex3y8k1uf78kuoxyzoi2fuc0ya0aj" #自分のTwitchアカから取れるので、変える(変更DONE)
+#こちらに変更かもoauth:oic0qa827w2fu1kbpyi2ihxjnketby
 #What you'd like to name your bot
 BOT = "ICE_MCI_testBot"
 
 #The channel you want to monitor
-CHANNEL = "" #自分のチャンネルの名前
+CHANNEL = "it0sat0" #自分のチャンネルの名前
 
 #Your account
-OWNER = "" #自分のチャンネルの名前
+OWNER = "it0sat0" #自分のチャンネルの名前
 
 message = ""
 user = ""
@@ -37,7 +37,7 @@ irc.send((	"PASS " + PASS + "\n" +
 TimeStamp = []
 command = []
 
-playername = ""  #ちゃんと変更すること
+playername = "it0sat0sub"  #ちゃんと変更すること
 
 def gamecontrol():  #あまり気にしなくていい
 	global message
@@ -52,6 +52,7 @@ def gamecontrol():  #あまり気にしなくていい
 				keypresser.key_up('s')
 				keypresser.key_up('d')
 				message = ""
+			'''
 			elif "vw" == message.lower():
 				mouse.move(0, -2, absolute=False, duration=0.5)
 				message = ""
@@ -64,6 +65,7 @@ def gamecontrol():  #あまり気にしなくていい
 			elif "vd" == message.lower():
 				mouse.move(5, 0, absolute=False, duration=0.5)
 				message = ""
+			'''
 			elif "mw" == message.lower():
 				mouse.move(0, -30, absolute=False, duration=0.5)
 				message = ""
@@ -78,32 +80,20 @@ def gamecontrol():  #あまり気にしなくていい
 				message = ""
 			elif "w" == message.lower():
 				keypresser.key_down('w')
-				message = ""
-			elif "a" == message.lower():
-				keypresser.key_down('a')
-				message = ""
-			elif "s" == message.lower():
-				keypresser.key_down('s')
-				message = ""
-			elif "d" == message.lower():
-				keypresser.key_down('d')
-				message = ""
-			elif "ow" == message.lower():
-				keypresser.key_down('w')
 				time.sleep(1)
 				keypresser.key_up('w')
 				message = ""
-			elif "oa" == message.lower():
+			elif "a" == message.lower():
 				keypresser.key_down('a')
 				time.sleep(1)
 				keypresser.key_up('a')
 				message = ""
-			elif "os" == message.lower():
+			elif "s" == message.lower():
 				keypresser.key_down('s')
 				time.sleep(1)
 				keypresser.key_up('s')
 				message = ""
-			elif "od" == message.lower():
+			elif "d" == message.lower():
 				keypresser.key_down('d')
 				time.sleep(1)
 				keypresser.key_up('d')
@@ -112,6 +102,7 @@ def gamecontrol():  #あまり気にしなくていい
 				mouse.click()
 				message = ""
 			elif "op" == message.lower():
+				time.sleep(0.1)
 				mouse.right_click()
 				message = ""
 			elif "cl" == message.lower():
@@ -119,6 +110,29 @@ def gamecontrol():  #あまり気にしなくていい
 				keypresser.key_up('e')
 				message = ""
 
+
+'''
+elif "ow" == message.lower():
+	keypresser.key_down('w')
+	time.sleep(1)
+	keypresser.key_up('w')
+	message = ""
+elif "oa" == message.lower():
+	keypresser.key_down('a')
+	time.sleep(1)
+	keypresser.key_up('a')
+	message = ""
+elif "os" == message.lower():
+	keypresser.key_down('s')
+	time.sleep(1)
+	keypresser.key_up('s')
+	message = ""
+elif "od" == message.lower():
+	keypresser.key_down('d')
+	time.sleep(1)
+	keypresser.key_up('d')
+	message = ""
+'''
 
 def twitch(): #まるごとコピーして使ったらいい。いつもコメントを取得している
 

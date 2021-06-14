@@ -30,15 +30,6 @@ public class OpenChest {
             System.out.println("Level:" + LevNum[Lev]);
         }
 
-        /*
-        for (int i = 0; i < LevNum.length; i++) {
-            if (level.equals("level" + LevNum[i])) {
-                Lev = i;
-                break;
-            }
-        }
-         */
-
         if (Lev == LevNum.length - 1) {
             System.out.println("NONONONONO");
         } else if (Lev < 2) {     //level1 or 2
