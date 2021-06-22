@@ -34,7 +34,7 @@ public class TwitchPlays {
 
 
     public static void join(String channel) {
-        OAuth2Credential oAuth2Credential = new OAuth2Credential("twitch", "oauth:oic0qa827w2fu1kbpyi2ihxjnketby");
+        OAuth2Credential oAuth2Credential = new OAuth2Credential("twitch", "oauth:");
         TwitchClient client = TwitchClientBuilder.builder()
                 .withEnableChat(true)
                 .withChatAccount(oAuth2Credential)
