@@ -12,6 +12,7 @@ import csv
 SERVER = "irc.twitch.tv" #固定
 PORT = 6667 #固定
 
+
 #Your OAUTH Code Here https://twitchapps.com/tmi/
 PASS = "" #自分のTwitchアカから取れるので、変える(変更DONE)
 #こちらに変更かもoauth:oic0qa827w2fu1kbpyi2ihxjnketby
@@ -37,7 +38,7 @@ irc.send((	"PASS " + PASS + "\n" +
 TimeStamp = []
 command = []
 
-playername = ""  #ちゃんと変更すること
+playername = "it0sat0sub"  #ちゃんと変更すること
 
 def gamecontrol():  #あまり気にしなくていい
 	global message
@@ -52,7 +53,6 @@ def gamecontrol():  #あまり気にしなくていい
 				keypresser.key_up('s')
 				keypresser.key_up('d')
 				message = ""
-			'''
 			elif "vw" == message.lower():
 				mouse.move(0, -2, absolute=False, duration=0.5)
 				message = ""
@@ -60,12 +60,11 @@ def gamecontrol():  #あまり気にしなくていい
 				mouse.move(0, 2, absolute=False, duration=0.5)
 				message = ""
 			elif "va" == message.lower():
-				mouse.move(-5, 0, absolute=False, duration=0.5)
+				mouse.move(-2, 0, absolute=False, duration=0.5)
 				message = ""
 			elif "vd" == message.lower():
-				mouse.move(5, 0, absolute=False, duration=0.5)
+				mouse.move(2, 0, absolute=False, duration=0.5)
 				message = ""
-			'''
 			elif "mw" == message.lower():
 				mouse.move(0, -30, absolute=False, duration=0.5)
 				message = ""
@@ -102,37 +101,38 @@ def gamecontrol():  #あまり気にしなくていい
 				mouse.click()
 				message = ""
 			elif "op" == message.lower():
-				time.sleep(0.1)
+				time.sleep(0.2)
+				mouse.right_click()
+				message = ""
+			elif "cr" == message.lower():
+				time.sleep(0.2)
 				mouse.right_click()
 				message = ""
 			elif "cl" == message.lower():
 				keypresser.key_down('e')
 				keypresser.key_up('e')
 				message = ""
+			elif "ow" == message.lower():
+				keypresser.key_down('w')
+				time.sleep(0.5)
+				keypresser.key_up('w')
+				message = ""
+			elif "oa" == message.lower():
+				keypresser.key_down('a')
+				time.sleep(0.5)
+				keypresser.key_up('a')
+				message = ""
+			elif "os" == message.lower():
+				keypresser.key_down('s')
+				time.sleep(0.5)
+				keypresser.key_up('s')
+				message = ""
+			elif "od" == message.lower():
+				keypresser.key_down('d')
+				time.sleep(0.5)
+				keypresser.key_up('d')
+				message = ""
 
-
-'''
-elif "ow" == message.lower():
-	keypresser.key_down('w')
-	time.sleep(1)
-	keypresser.key_up('w')
-	message = ""
-elif "oa" == message.lower():
-	keypresser.key_down('a')
-	time.sleep(1)
-	keypresser.key_up('a')
-	message = ""
-elif "os" == message.lower():
-	keypresser.key_down('s')
-	time.sleep(1)
-	keypresser.key_up('s')
-	message = ""
-elif "od" == message.lower():
-	keypresser.key_down('d')
-	time.sleep(1)
-	keypresser.key_up('d')
-	message = ""
-'''
 
 def twitch(): #まるごとコピーして使ったらいい。いつもコメントを取得している
 

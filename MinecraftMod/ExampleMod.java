@@ -106,21 +106,14 @@ public class ExampleMod {
         );
     }
 
-    /*
-    public static void click(int x, int y) throws AWTException {
-        Robot bot = new Robot();
-        bot.mouseMove(x, y);
-        bot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
-        bot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
-    }
 
-     */
 
     //チェストの位置
-    //level1 and 2
-    public static double LowLevel[][][] = {{{-132,-631},{-103,-678}},{{-494,719},{-515,643}}};
-    //level6,8 and 11
-    public static double HighLevel[][][] = {{{116,58},{115,42},{143,-13},{85,-6}},{{19,129},{38,93},{-17,111},{3,57}},{{352,20},{315,-57},{313,-4},{348,-41}}};
+    public static double ChestPosotionXZ[][][] = {{{-132,-631},{-103,-678},{0,0},{0,0}},
+                                                {{-494,719},{-515,643},{0,0},{0,0}},
+                                                {{116,58},{115,41},{143,-14},{85.5,-6.5}},
+                                                {{19,129},{38,92},{-17,112},{4,56}},
+                                                {{352,20},{315,-59},{314,-5},{349,-43}}};
 
     //プレイ開始後の処理
     int count = 0;
@@ -202,10 +195,9 @@ public class ExampleMod {
     public void onSendChat(PlayerEvent event){
         if(Chast == true) {
             PlayerEntity player = event.getPlayer();
-            String worldName = player.world.getWorldInfo().getWorldName();  //get World Name
-            System.out.println("WorldName:" + worldName);
-            OpenChestNo = OpenChest.OpenChestPosition(worldName, player.getPosX(), player.getPosZ(), LowLevel, HighLevel, LC);
-
+            int ChestInfo[] = OpenChest.OpenChestPosition(player.getPosX(), player.getPosZ(), ExampleMod.ChestPosotionXZ, true);
+            //OpenChestNo = OpenChest.ReturnInfo[1];
+            OpenChestNo = ChestInfo[1];
             if (OpenChestNo == 0 || OpenChestNo == 5) {
 
             } else if (ChestNo + 1 == OpenChestNo) {
