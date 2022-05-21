@@ -8,7 +8,7 @@ import keyboard
 import datetime
 import csv
 
-hwnd = win32gui.FindWindow(None, 'Minecraft* 1.15.2') #ここ！！変更の必要あり！！
+hwnd = win32gui.FindWindow(None, 'Minecraft* 1.15.2 - シングルプレイ') #ここ！！変更の必要あり！！
 win32gui.SetForegroundWindow(hwnd)
 x,y,height,width = win32gui.GetWindowRect(hwnd)
 #772 368 1650 887
@@ -62,31 +62,31 @@ def gamecontrol():  #あまり気にしなくていい
 				keypresser.key_up('s')
 				keypresser.key_up('d')
 				message = ""
-			elif "vw" == message.lower():
+			elif "t" == message.lower():
 				mouse.move(0, -5, absolute=False, duration=0.5)
 				message = ""
-			elif "vs" == message.lower():
+			elif "b" == message.lower():
 				mouse.move(0, 5, absolute=False, duration=0.5)
 				message = ""
-			elif "va" == message.lower():
+			elif "l" == message.lower():
 				mouse.move(-5, 0, absolute=False, duration=0.5)
 				message = ""
-			elif "vd" == message.lower():
+			elif "r" == message.lower():
 				mouse.move(5, 0, absolute=False, duration=0.5)
 				message = ""
-			elif "mw" == message.lower():
-				mouse.move(0, -15, absolute=False, duration=0.5)
+			elif "mt" == message.lower():
+				mouse.move(0, -30, absolute=False, duration=0.5)
 				message = ""
-			elif "ma" == message.lower():
-				mouse.move(-15, 0, absolute=False, duration=0.5)
+			elif "ml" == message.lower():
+				mouse.move(-30, 0, absolute=False, duration=0.5)
 				message = ""
-			elif "ms" == message.lower():
-				mouse.move(0, 15, absolute=False, duration=0.5)
+			elif "mb" == message.lower():
+				mouse.move(0, 30, absolute=False, duration=0.5)
 				message = ""
-			elif "md" == message.lower():
-				mouse.move(15, 0, absolute=False, duration=0.5)
+			elif "mr" == message.lower():
+				mouse.move(30, 0, absolute=False, duration=0.5)
 				message = ""
-			elif "w" == message.lower():
+			elif "w" == message.lower(): #ここをどうするか相談中
 				keypresser.key_down('w')
 				time.sleep(1)
 				keypresser.key_up('w')
@@ -133,6 +133,10 @@ def gamecontrol():  #あまり気にしなくていい
 				time.sleep(0.5)
 				keypresser.key_up('d')
 				message = ""
+			elif "o" in message.lower():
+				message = ""
+			elif "m" in message.lower():
+				message = ""
 			elif "cl" == message.lower(): #旧、新どちらにも使用する
 				keypresser.key_down('e')
 				keypresser.key_up('e')
@@ -145,7 +149,8 @@ def gamecontrol():  #あまり気にしなくていい
 				time.sleep(0.2)
 				mouse.right_click()
 				message = ""
-			elif "m" in message.lower():
+			elif "mouse," in message.lower():
+				print('AAAAAAAAAAA')
 				l = message.lower().split(',')
 				print('------------------')
 				print(x,y,width,height) 
@@ -154,6 +159,22 @@ def gamecontrol():  #あまり気にしなくていい
 				print(x+(height-x)*float(l[1]),y+(width-y)*float(l[2]),x,y) 
 				time.sleep(0.3)
 				mouse.right_click()
+				message = ""
+			elif "vw" in message.lower():
+				l = message.lower().split(',')
+				mouse.move(0, -3*int(l[1]), absolute=False, duration=0.5)
+				message = ""
+			elif "vs" in message.lower():
+				l = message.lower().split(',')
+				mouse.move(0, 3*int(l[1]), absolute=False, duration=0.5)
+				message = ""
+			elif "va" in message.lower():
+				l = message.lower().split(',')
+				mouse.move(-3*int(l[1]), 0, absolute=False, duration=0.5)
+				message = ""
+			elif "vd" in message.lower():
+				l = message.lower().split(',')
+				mouse.move(3*int(l[1]), 0, absolute=False, duration=0.5)
 				message = ""
 			elif "w" in message.lower():
 				l = message.lower().split(',')
@@ -179,21 +200,7 @@ def gamecontrol():  #あまり気にしなくていい
 				time.sleep(int(l[1]))
 				keypresser.key_up('d')
 				message = ""
-			elif "vw" in message.lower():
-				l = message.lower().split(',')
-				mouse.move(0, -3*int(l[1]), absolute=False, duration=0.5)
-				message = ""
-			elif "vs" in message.lower():
-				l = message.lower().split(',')
-				mouse.move(0, 3*int(l[1]), absolute=False, duration=0.5)
-				message = ""
-			elif "va" in message.lower():
-				l = message.lower().split(',')
-				mouse.move(-3*int(l[1]), 0, absolute=False, duration=0.5)
-				message = ""
-			elif "vd" in message.lower():
-				l = message.lower().split(',')
-				mouse.move(3*int(l[1]), 0, absolute=False, duration=0.5)
+			else:
 				message = ""
 			'''
 			elif "cr" == message.lower():
