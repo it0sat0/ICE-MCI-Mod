@@ -32,13 +32,13 @@ public class TwitchPlays {
                                                 {{116,58},{0,0},{0,0},{0,0}},
                                                 {{3,56},{0,0},{0,0},{0,0}},
                                                 {{347,-43},{0,0},{0,0},{0,0}},
-                                                {{-115,68},{0,0},{0,0},{0,0}},//オリジナルのマップ
-                                                {{-210,-18},{0,0},{0,0},{0,0}},
-                                                {{126,-260},{0,0},{0,0},{0,0}},
-                                                {{-277,185},{0,0},{0,0},{0,0}},
-                                                {{258,100},{0,0},{0,0},{0,0}}};
+                                                {{-113.5,82.5},{0,0},{0,0},{0,0}},//オリジナルのマップ
+                                                {{-210.5,-18.5},{0,0},{0,0},{0,0}},
+                                                {{127.5,-256.5},{0,0},{0,0},{0,0}},
+                                                {{-289.5,198.5},{0,0},{0,0},{0,0}},
+                                                {{349.5,43.5},{0,0},{0,0},{0,0}}};
     public static double PositionY[][] = {{67.5,67.5,0,0},{66.5,66.5,0,0},{68.5,68.5,69.5,68.5},{0,64.5,64.5,66.5},{71.5,68.5,70.5,71.5},
-                                        {70,70.5,0,0},{63,63.5,0,0},{65.5,64.5,64.5,66.5},{66.5,68.5,64.5,70.5},{64.5,68.5,67.5,66.5}};
+                                        {69.5,69.5,0,0},{63.5,63.5,0,0},{64.5,64.5,64.5,66.5},{68.5,68.5,64.5,69.5},{65.5,64.5,64.5,64.5}};
     public static double dis, vectx, vectz,X,Z;
 
     public static void join(String channel) {
@@ -279,96 +279,96 @@ public class TwitchPlays {
                 if (X > targetPlayer.getPosX() && Z > targetPlayer.getPosZ()) {
                     //3
                     System.out.println("3333333333333333333");
-                    vectz = 1.15*vectz -85.4;
+                    vectz = 1.00*vectz -91.4;
                 } else if (X < targetPlayer.getPosX() && Z < targetPlayer.getPosZ()) {
                     //1
                     System.out.println("111111111111111111111");
-                    vectz = 1.05*vectz +261;
+                    vectz = 1.08*vectz +280;
                 } else if (X > targetPlayer.getPosX()) {
                     //4
                     System.out.println("44444444444444444444");
-                    vectz = 1.24*vectz -76.8;
+                    vectz = 1.05*vectz -86;
                 } else {
                     //2
                     System.out.println("2222222222222222222");
-                    vectz = 0.729*vectz -55;
+                    vectz = 1.02*vectz -89.8;
                 }
                 break;
             case 6: //Olevel2
                 if (X > targetPlayer.getPosX() && Z > targetPlayer.getPosZ()) {
                     //3
                     System.out.println("3333333333333333333");
-                    vectz = 1.25*vectz -103;
+                    vectz = 0.985*vectz -89.1;
                 } else if (X < targetPlayer.getPosX() && Z < targetPlayer.getPosZ()) {
                     //1
                     System.out.println("111111111111111111111");
-                    vectz = 0.743*vectz +236;
+                    vectz = 1.02*vectz +271;
                 } else if (X > targetPlayer.getPosX()) {
                     //4
                     System.out.println("44444444444444444444");
-                    vectz = 1.11*vectz -95.4;
+                    vectz = 1.03*vectz -86.5;
                 } else {
                     //2
                     System.out.println("2222222222222222222");
-                    vectz = 0.98*vectz -74.2;
+                    vectz = 0.984*vectz -86.4;
                 }
                 break;
             case 7: //Olevel3 まだエラーでてる！！！
                 if (X > targetPlayer.getPosX() && Z > targetPlayer.getPosZ()) {
                     //3
                     System.out.println("3333333333333333333");
-                    vectz =0.95*vectz -105;
+                    vectz =1.02*vectz -91.8;
                 } else if (X < targetPlayer.getPosX() && Z < targetPlayer.getPosZ()) {
                     //1
                     System.out.println("111111111111111111111");
-                    vectz =0.943*vectz +277;
+                    vectz =1.03*vectz +274;
 
                 } else if (X > targetPlayer.getPosX()) {
                     //4
                     System.out.println("44444444444444444444");
-                    vectz =0.89*vectz -92.2;
+                    vectz =1.02*vectz -87.7;
                 } else {
                     //2
                     System.out.println("2222222222222222222");
-                    vectz =1.2*vectz -177;
+                    vectz =1.02*vectz -91.3;
                 }
                 break;
             case 8: //Olevel4
                 if (X > targetPlayer.getPosX() && Z > targetPlayer.getPosZ()) {
                     //3
                     System.out.println("3333333333333333333");
-                    vectz =0.971*vectz -74.2;
+                    vectz =1.01*vectz -88.4;
                 } else if (X < targetPlayer.getPosX() && Z < targetPlayer.getPosZ()) {
                     //1
                     System.out.println("111111111111111111111");
-                    vectz =0.99*vectz +255;
+                    vectz =1.05*vectz +279;
                 } else if (X > targetPlayer.getPosX()) {
                     //4
                     System.out.println("44444444444444444444");
-                    vectz =1.42*vectz -71;
+                    vectz =1.05*vectz -89.7;
                 } else {
                     //2
                     System.out.println("2222222222222222222");
-                    vectz =0.737*vectz -55;
+                    vectz =1.04*vectz -97.7;
                 }
                 break;
             case 9: //Olevel5
                 if (X > targetPlayer.getPosX() && Z > targetPlayer.getPosZ()) {
                     //3
                     System.out.println("3333333333333333333");
-                    vectz =0.737*vectz -77.3;
+                    vectz =0.994*vectz -87.1;
                 } else if (X < targetPlayer.getPosX() && Z < targetPlayer.getPosZ()) {
                     //1
                     System.out.println("111111111111111111111");
-                    vectz =1.29*vectz +310;
+                    vectz =1.04*vectz +277;
                 } else if (X > targetPlayer.getPosX()) {
                     //4
                     System.out.println("44444444444444444444");
-                    vectz =1.1*vectz -68.8;
+                    vectz =0.982*vectz -92.2;
                 } else {
                     //2
                     System.out.println("2222222222222222222");
-                    vectz =1.11*vectz -124;
+                    vectz =1.05*vectz -99.4;
                 }
                 break;
             default:
