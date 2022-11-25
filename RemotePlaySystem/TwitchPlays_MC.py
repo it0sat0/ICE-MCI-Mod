@@ -4,11 +4,11 @@ import threading
 import time
 import keypresser
 import mouse
-import keyboard
-import datetime
-import csv
+import shutil
+import os
 
 hwnd = win32gui.FindWindow(None, 'Minecraft* 1.15.2 - シングルプレイ') #ここ！！変更の必要あり！！
+#hwnd = win32gui.FindWindow(None, 'Minecraft* 1.15.2') #ここ！！変更の必要あり！！
 win32gui.SetForegroundWindow(hwnd)
 x,y,height,width = win32gui.GetWindowRect(hwnd)
 #772 368 1650 887
@@ -47,20 +47,56 @@ irc.send((	"PASS " + PASS + "\n" +
 TimeStamp = []
 command = []
 
-playername = "it0sat0sub"  #ちゃんと変更すること
+playername = "it0sat0sub3"  #ちゃんと変更すること
 
 def gamecontrol():  #あまり気にしなくていい
 	global message
 	while True:
 		time.sleep(0.001)
 		#mousemoving.offset_move(mouse_offset_x, mouse_offset_y)
-		if playername == user.lower():
+		if playername == user.lower() or "it0sat0" == user.lower():
 			if "st" == message.lower(): #旧システムのコマンド
 				mouse.move(0, 0, absolute=False, duration=0.1)
 				keypresser.key_up('w')
 				keypresser.key_up('a')
 				keypresser.key_up('s')
 				keypresser.key_up('d')
+				message = ""
+			elif "fse" == message.lower():
+				time.sleep(2)
+				keypresser.key_down('ESC')
+				keypresser.key_up('ESC')
+				keypresser.key_down('ESC')
+				keypresser.key_up('ESC')
+				time.sleep(0.3)
+				mouse.move(x+(height-x)*0.5,y+(width-y)*0.7, absolute=True, duration=0.5) #セーブしてタイトルへ
+				mouse.click()
+				time.sleep(1)
+				filemove()
+				time.sleep(0.5)
+				mouse.move(x+(height-x)*0.5,y+(width-y)*0.5, absolute=True, duration=0.5) #シングルプレイを選択
+				mouse.click()
+				mouse.wheel(-3)
+				mouse.move(x+(height-x)*0.25,y+(width-y)*0.65, absolute=True, duration=0.5) #ワールド選択
+				mouse.click()
+				message = ""
+			elif "fso" == message.lower():
+				print("fso OK")
+				time.sleep(1)
+				keypresser.key_down('ESC')
+				keypresser.key_up('ESC')
+				keypresser.key_down('ESC')
+				keypresser.key_up('ESC')
+				time.sleep(0.3)
+				mouse.move(x+(height-x)*0.5,y+(width-y)*0.7, absolute=True, duration=0.5) #セーブしてタイトルへ
+				mouse.click()
+				time.sleep(1)
+				time.sleep(0.5)
+				mouse.move(x+(height-x)*0.5,y+(width-y)*0.5, absolute=True, duration=0.5) #シングルプレイを選択
+				mouse.click()
+				mouse.wheel(-3)
+				mouse.move(x+(height-x)*0.25,y+(width-y)*0.65, absolute=True, duration=0.5) #ワールド選択
+				mouse.click()
 				message = ""
 			elif "mo" in message.lower():
 				l = message.lower().split(',')
@@ -143,6 +179,14 @@ def gamecontrol():  #あまり気にしなくていい
 				time.sleep(0.5)
 				keypresser.key_up('d')
 				message = ""
+			elif "open" == message.lower(): #ここから、新システム用コマンド
+				time.sleep(0.5)
+				mouse.right_click()
+				message = ""
+			elif "craft" == message.lower(): 
+				time.sleep(0.5)
+				mouse.right_click()
+				message = ""
 			elif "o" in message.lower():
 				message = ""
 			elif "m" in message.lower():
@@ -158,14 +202,6 @@ def gamecontrol():  #あまり気にしなくていい
 				keypresser.key_up('e')
 				message = ""
 			elif "l" in message.lower():
-				message = ""
-			elif "open" == message.lower(): #ここから、新システム用コマンド
-				time.sleep(1.0)
-				mouse.right_click()
-				message = ""
-			elif "craft" == message.lower(): 
-				time.sleep(1.0)
-				mouse.right_click()
 				message = ""
 			elif "vw" in message.lower():
 				l = message.lower().split(',')
@@ -213,6 +249,14 @@ def gamecontrol():  #あまり気にしなくていい
 				mouse.right_click()
 				message = ""
 			'''
+
+def filemove():
+	shutil.rmtree(r'C:\Users\Satoko Ito\Desktop\test\run\saves')
+	#大元　"C:\Users\Satoko Ito\Desktop\world_backup\original"
+	#コピー先　"C:\Users\Satoko Ito\Desktop\mci_test_15\run\saves"
+	shutil.copytree(r"C:\Users\Satoko Ito\Desktop\world_backup\original", r"C:\Users\Satoko Ito\Desktop\test\run\saves",dirs_exist_ok=False)
+	#os.mkdir(r"C:\Users\Satoko Ito\Desktop\saves\saves")
+	#shutil.copy2(r"C:\Users\Satoko Ito\Desktop\copysaves", r"C:\Users\Satoko Ito\Desktop\saves\saves")
 
 def twitch(): #まるごとコピーして使ったらいい。いつもコメントを取得している
 
