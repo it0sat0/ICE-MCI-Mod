@@ -9,6 +9,7 @@ import java.util.Calendar;
 import java.util.stream.Collectors;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.Date;
 //import java.awt.*;
 //import java.awt.event.InputEvent;
 
@@ -124,11 +125,13 @@ public class ExampleMod {
     int count = 0;
     double disX, disZ;
     double dis = 0.0;
+    String NowWorldName;
     SimpleDateFormat sdf;
     ArrayList<ArrayList<Double>> PosLists = new ArrayList<ArrayList<Double>>(); //Set position
     ArrayList<String> TS = new ArrayList<String>(); //Set TimeStamp
     ArrayList<Double> Dis = new ArrayList<Double>();    //Set Distance
     ArrayList<ArrayList<Float>> PitchYaws = new ArrayList<ArrayList<Float>>();  //Set Pitch and Yaw
+
 
     int TimeCounter[] = {0,0,0,0};
     @SubscribeEvent
@@ -139,6 +142,7 @@ public class ExampleMod {
         //event.getPlayer().sendMessage(new StringTextComponent("ゲーム開始"));
         PlayerEntity player = event.getPlayer();
         String worldName = player.world.getWorldInfo().getWorldName();  //get World Name
+        NowWorldName =worldName;
 
         //本当は書く必要ないけど、disのために書くしか案がおもいつかなかったところ。残念無念。
         Calendar cl = Calendar.getInstance();
@@ -268,12 +272,21 @@ public class ExampleMod {
         PlayerEntity player = event.getPlayer();
         String worldName = player.world.getWorldInfo().getWorldName();
 
+        if(worldName.equals("Olevel5")){
+            TwitchPlays.EndStage(5);
+        }else{
+            TwitchPlays.EndStage(0);
+        }
+
         try{
             if(worldName.equals("level1")) {
                 File newdir = new File("C:\\minecraft_mci_files");
                 newdir.mkdir();
             }
-            File file = new File("C:\\minecraft_mci_files\\" + worldName + "_MovementResult.csv");
+            Date nowDate = new Date();
+            SimpleDateFormat sdf1 = new SimpleDateFormat("yyyyMMdd_HHmmss");
+            String formatNowDate = sdf1.format(nowDate);
+            File file = new File("C:\\minecraft_mci_files\\" + formatNowDate+ "_" + worldName + "_MovementResult.csv");
             FileWriter filewriter = new FileWriter(file);
             PrintWriter p = new PrintWriter(new BufferedWriter(filewriter));
             for(int i=0; i<count; i++){//Time,x,y,z,dis,pitch,yaw

@@ -1,12 +1,18 @@
 package com.ice.mci_mod;
 
 import java.io.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class ResultVoids {
     public static void ChatResult(String worldName, ArrayList<ArrayList<String>> Chats) {
+        Date nowDate = new Date();
+        SimpleDateFormat sdf1 = new SimpleDateFormat("yyyyMMdd_HHmmss");
+        String formatNowDate = sdf1.format(nowDate);
+
         try {
-            File file = new File("C:\\minecraft_mci_files\\" + worldName + "_ChatsResult.csv");
+            File file = new File("C:\\minecraft_mci_files\\"  + formatNowDate+ "_" + worldName + "_ChatsResult.csv");
             FileWriter filewriter = new FileWriter(file);
             PrintWriter p = new PrintWriter(new BufferedWriter(filewriter));
 
@@ -24,8 +30,12 @@ public class ResultVoids {
     }
 
     public static void TimeCountResult(String worldName, int TimeCounter[]){
+        Date nowDate = new Date();
+        SimpleDateFormat sdf1 = new SimpleDateFormat("yyyyMMdd_HHmmss");
+        String formatNowDate = sdf1.format(nowDate);
+
         try{
-            File file = new File("C:\\minecraft_mci_files\\"+ worldName + "_StopTimeResult.csv");
+            File file = new File("C:\\minecraft_mci_files\\"+ formatNowDate+ "_" + worldName + "_StopTimeResult.csv");
             FileWriter filewriter = new FileWriter(file);
             PrintWriter p = new PrintWriter(new BufferedWriter(filewriter));
             p.print(worldName);
@@ -42,8 +52,12 @@ public class ResultVoids {
     }
 
     public static void ItemResult(String worldName, ArrayList<ArrayList<String>> Items) {
+        Date nowDate = new Date();
+        SimpleDateFormat sdf1 = new SimpleDateFormat("yyyyMMdd_HHmmss");
+        String formatNowDate = sdf1.format(nowDate);
+
         try {
-            File file = new File("C:\\minecraft_mci_files\\" + worldName + "_ItemsResult.csv");
+            File file = new File("C:\\minecraft_mci_files\\" + formatNowDate+ "_" + worldName + "_ItemsResult.csv");
             FileWriter filewriter = new FileWriter(file);
             PrintWriter p = new PrintWriter(new BufferedWriter(filewriter));
 
@@ -61,8 +75,12 @@ public class ResultVoids {
     }
 
     public static void BlockResult(String worldName, ArrayList<ArrayList<String>> Blocks) {
+        Date nowDate = new Date();
+        SimpleDateFormat sdf1 = new SimpleDateFormat("yyyyMMdd_HHmmss");
+        String formatNowDate = sdf1.format(nowDate);
+
         try {
-            File file = new File("C:\\minecraft_mci_files\\" + worldName + "_BlocksResult.csv");
+            File file = new File("C:\\minecraft_mci_files\\" + formatNowDate+ "_" + worldName + "_BlocksResult.csv");
             FileWriter filewriter = new FileWriter(file);
             PrintWriter p = new PrintWriter(new BufferedWriter(filewriter));
 

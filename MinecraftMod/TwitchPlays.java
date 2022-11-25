@@ -4,6 +4,7 @@ import com.github.philippheuer.credentialmanager.domain.OAuth2Credential;
 import com.github.twitch4j.TwitchClient;
 import com.github.twitch4j.TwitchClientBuilder;
 import com.github.twitch4j.chat.events.channel.ChannelMessageEvent;
+
 import net.minecraft.block.AirBlock;
 import net.minecraft.block.Block;
 import net.minecraft.command.arguments.EntityAnchorArgument;
@@ -60,6 +61,18 @@ public class TwitchPlays {
         });
     }
 
+    public static void EndStage(int level){
+        OAuth2Credential oAuth2Credential = new OAuth2Credential("twitch", "oauth:hm336j4zk99b9121e1nutixh1oghx1");
+        TwitchClient client = TwitchClientBuilder.builder()
+                .withEnableChat(true)
+                .withChatAccount(oAuth2Credential)
+                .build();
+        if(level == 5){
+            client.getChat().sendMessage("it0sat0", "fse");
+        }else{
+            client.getChat().sendMessage("it0sat0", "fso");
+        }
+    }
 
     public static void playerCommand(String message) {
         if (Objects.isNull(TwitchPlays.targetPlayer)) {
